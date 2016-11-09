@@ -84,7 +84,7 @@ while True:
     #temp_volts = ConvertVolts(temp_level, 2)
     #temp = ConvertTemp(temp_level, 2)
 
-    average = reduce(lambda x, y: x + y, dataStorage) / len(dataStorage)
+    average = round(reduce(lambda x, y: x + y, dataStorage) / len(dataStorage),3)
 
     # Print out results
     print ("--------------------------------------------")
