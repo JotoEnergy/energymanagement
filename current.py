@@ -32,7 +32,7 @@ def convertVolt (input1):
 def current (channel):
     data = readChannel(channel)
 
-    return (data - 500) / 19
+    return ((data - 500) / 19) - 1
 
 
 
@@ -45,7 +45,7 @@ while True:
     batteryStorage = []
     solarStorage = []
 
-    for i in xrange(1, 5):
+    #for i in xrange(1, 5):
 
         #Convert to Volts
         #verbraucherVolts = convertVolt(readChannel(0))
@@ -58,13 +58,13 @@ while True:
         #Write to array and create average
         #verbraucherStorage.append(verbraucherVolts)
         #batteryStorage.append(batteryVolts)
-        solarStorage.append(current(2))
-        time.sleep(0.1)
+        #solarStorage.append(current(2))
+        #time.sleep(0.1)
 
     #Average Array
     #averageVerbraucher = round(reduce(lambda x, y: x + y, verbraucherStorage) / len(verbraucherStorage),3)
    # averageBattery = round(reduce(lambda x, y: x + y, batteryStorage) / len(batteryStorage),3)
-    averageSolar = reduce(lambda x, y: x + y, solarStorage) / len(solarStorage)
+    #averageSolar = reduce(lambda x, y: x + y, solarStorage) / len(solarStorage)
 
     # Print out results
 
@@ -76,5 +76,7 @@ while True:
     #print("Batterie   : ({}V)".format(averageBattery))
     print("Solarpanel : ({}V)".format(current(2)))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
+
+    time.sleep(0.5)
 
     # Wait before repeating loop
