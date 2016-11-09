@@ -32,7 +32,7 @@ def convertVolt (input1):
 def current (channel):
     data = readChannel(channel)
 
-    return (data / 19) + 500
+    return (data - 500) / 19
 
 
 
