@@ -88,7 +88,7 @@ while True:
 
     # Print out results
     print ("--------------------------------------------")
-    print("Verbraucher: {} ({}V)".format(Verbraucher_level, average))
+    print("Verbraucher: {} ({}V)".format(verbraucherLevel, average))
     print("Batterie   : {} ({}V)".format(Batterie_level, Batterie_volts))
     print("Solarpanel : {} ({}V)".format(Solarpanel_level, Solarpanel_volts))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
