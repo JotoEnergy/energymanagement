@@ -53,16 +53,19 @@ def ConvertVoltsSolar(Solar, places):
     voltsSolar = round(voltsSolar, places)
     return voltsSolar
 
+def convertVolt (input1, decimals):
+    return round((input1 * 3.3) / float(1023), decimals)
+
 while True:
     # Read the light sensor data
     Verbraucher_level = ReadChannel(0)
-    Verbraucher_volts = ConvertVolts(Verbraucher_level, 3)
+    Verbraucher_volts = convertVolt(Verbraucher_level, 3)
     
     Batterie_level = ReadChannelBat(1)
-    Batterie_volts = ConvertVoltsBat(Batterie_level, 3)
+    Batterie_volts = convertVolt(Batterie_level, 3)
 
     Solarpanel_level = ReadChannelSolar(2)
-    Solarpanel_volts = ConvertVoltsSolar(Solarpanel_level, 3)
+    Solarpanel_volts = convertVolt(Solarpanel_level, 3)
     # Read the temperature sensor data
     #temp_level = ReadChannel(temp_channel)
     #temp_volts = ConvertVolts(temp_level, 2)
