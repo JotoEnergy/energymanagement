@@ -54,29 +54,48 @@ def ConvertVoltsSolar(Solar, places):
     return voltsSolar
 
 def convertVolt (input1, decimals):
+
     return round((input1 * 3.3) / float(1023), decimals)
 
+def newConvertVolt (input1, decimals):
+
+
+
+
+
+
 while True:
-    # Read the light sensor data
-    Verbraucher_level = ReadChannel(0)
-    Verbraucher_volts = convertVolt(Verbraucher_level, 3)
-    
+
+    dataStorage = []
+    for i in xrange(1, 10):
+        # Read the light sensor data
+        verbraucherLevel = ReadChannel(0)
+        #Convert to Volts
+        verbraucherVolts = convertVolt(verbraucherLevel, 3)
+
+        #Write to array and create average
+        dataStorage.append(verbraucherVolts)
+        time.sleep(0.1)
+
     Batterie_level = ReadChannelBat(1)
     Batterie_volts = convertVolt(Batterie_level, 3)
 
     Solarpanel_level = ReadChannelSolar(2)
     Solarpanel_volts = convertVolt(Solarpanel_level, 3)
+
     # Read the temperature sensor data
+
     #temp_level = ReadChannel(temp_channel)
     #temp_volts = ConvertVolts(temp_level, 2)
     #temp = ConvertTemp(temp_level, 2)
 
+    average = reduce(lambda x, y: x + y, dataStorage) / len(dataStorage)
+
     # Print out results
     print ("--------------------------------------------")
-    print("Verbraucher: {} ({}V)".format(Verbraucher_level, Verbraucher_volts))
+    print("Verbraucher: {} ({}V)".format(Verbraucher_level, average))
     print("Batterie   : {} ({}V)".format(Batterie_level, Batterie_volts))
     print("Solarpanel : {} ({}V)".format(Solarpanel_level, Solarpanel_volts))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
     # Wait before repeating loop
-    time.sleep(delay)
