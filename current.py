@@ -33,64 +33,49 @@ def ReadChannelSolar(channel):
     Solar = ((adc[1] & 3) << 8) + adc[2]
     return Solar
 
+def readChannel(channel):
+    #Channel must be between 1, 6
+    adc = spi.xfer2([1, (8 + channel) << 4, 0])
+    data = ((adc[1] & 3) << 8) + adc[2]
+    return data
+
 # Function to convert data to voltage level,
 # rounded to specified number of decimal places.
-def ConvertVolts(data, places):
-    #return .0264 * data - 13.51
-    volts = (data * 3.3) / float(1023)
-    volts = round(volts, places)
-    return volts
-
-def ConvertVoltsBat(Bat, places):
-    #return .0264 * data - 13.51
-    voltsBat = (Bat * 3.3) / float(1023)
-    voltsBat = round(voltsBat, places)
-    return voltsBat
-
-def ConvertVoltsSolar(Solar, places):
-    #return .0264 * data - 13.51
-    voltsSolar = (Solar * 3.3) / float(1023)
-    voltsSolar = round(voltsSolar, places)
-    return voltsSolar
 
 def convertVolt (input1, decimals):
 
-    return round((input1 * 3.3) / float(1023), decimals)
+    return round((input1 * 3.3) / float(1024), decimals)
 
 #def newConvertVolt (input1, decimals):
 
 while True:
 
-    dataStorage = []
+    verbraucherStorage = []
+    batteryStorage = []
+    solarStorage = []
+
     for i in xrange(1, 10):
         # Read the light sensor data
-        verbraucherLevel = ReadChannel(0)
         #Convert to Volts
-        verbraucherVolts = convertVolt(verbraucherLevel, 3)
+        verbraucherVolts = convertVolt(readChannel(0), 3)
+        batteryVolts = convertVolt(readChannel(1), 3)
+        solarVolts = convertVolt(readChannel(2), 3)
 
         #Write to array and create average
-        dataStorage.append(verbraucherVolts)
+        verbraucherStorage.append(verbraucherVolts)
+        batteryStorage.append(batteryVolts)
+        solarStorage.append(solarVolts)
         time.sleep(0.1)
 
-    Batterie_level = ReadChannelBat(1)
-    Batterie_volts = convertVolt(Batterie_level, 3)
-
-    Solarpanel_level = ReadChannelSolar(2)
-    Solarpanel_volts = convertVolt(Solarpanel_level, 3)
-
-    # Read the temperature sensor data
-
-    #temp_level = ReadChannel(temp_channel)
-    #temp_volts = ConvertVolts(temp_level, 2)
-    #temp = ConvertTemp(temp_level, 2)
-
-    average = round(reduce(lambda x, y: x + y, dataStorage) / len(dataStorage),3)
+    averageVerbraucher = round(reduce(lambda x, y: x + y, verbraucherStorage) / len(verbraucherStorage),3)
+    averageBattery = round(reduce(lambda x, y: x + y, batteryStorage) / len(batteryStorage),3)
+    averageSolar = round(reduce(lambda x, y: x + y, solarStorage) / len(solarStorage),3)
 
     # Print out results
     print ("--------------------------------------------")
-    print("Verbraucher: {} ({}V)".format(verbraucherLevel, average))
-    print("Batterie   : {} ({}V)".format(Batterie_level, Batterie_volts))
-    print("Solarpanel : {} ({}V)".format(Solarpanel_level, Solarpanel_volts))
+    print("Verbraucher: {} ({}V)".format(verbraucherLevel, averageVerbraucher))
+    print("Batterie   : {} ({}V)".format(Batterie_level, averageBattery))
+    print("Solarpanel : {} ({}V)".format(Solarpanel_level, averageSolar))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
     # Wait before repeating loop
