@@ -72,10 +72,14 @@ while True:
     averageSolar = round(reduce(lambda x, y: x + y, solarStorage) / len(solarStorage),3)
 
     # Print out results
+
+#verbraucherLevel
+#Batterie_level
+#Solarpanel_level
     print ("--------------------------------------------")
-    print("Verbraucher: {} ({}V)".format(verbraucherLevel, averageVerbraucher))
-    print("Batterie   : {} ({}V)".format(Batterie_level, averageBattery))
-    print("Solarpanel : {} ({}V)".format(Solarpanel_level, averageSolar))
+    print("Verbraucher: {} ({}V)".format( averageVerbraucher))
+    print("Batterie   : {} ({}V)".format(averageBattery))
+    print("Solarpanel : {} ({}V)".format(averageSolar))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
     # Wait before repeating loop
