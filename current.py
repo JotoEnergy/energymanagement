@@ -30,7 +30,9 @@ def convertVolt (input1):
 
 
 def current (channel):
-    return readChannel(channel)
+    data = readChannel(channel)
+
+    return (data / 19) + 500
 
 
 
@@ -61,7 +63,7 @@ while True:
 
     #averageVerbraucher = round(reduce(lambda x, y: x + y, verbraucherStorage) / len(verbraucherStorage),3)
    # averageBattery = round(reduce(lambda x, y: x + y, batteryStorage) / len(batteryStorage),3)
-    averageSolar = round(reduce(lambda x, y: x + y, solarStorage) / len(solarStorage),3)
+    averageSolar = reduce(lambda x, y: x + y, solarStorage) / len(solarStorage)
 
     # Print out results
 
