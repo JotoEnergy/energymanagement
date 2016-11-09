@@ -57,12 +57,7 @@ def convertVolt (input1, decimals):
 
     return round((input1 * 3.3) / float(1023), decimals)
 
-def newConvertVolt (input1, decimals):
-
-
-
-
-
+#def newConvertVolt (input1, decimals):
 
 while True:
 
