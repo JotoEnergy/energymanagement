@@ -29,13 +29,19 @@ def convertVolt (input1):
 #def newConvertVolt (input1, decimals):
 
 
-def current (channel):
+def convertCurrent (channel):
     data = readChannel(channel)
 
     return (data - 500) / 19
 
 
+#Give SPI Channel and receive Array: [0] - Volt, [1] - Current
+def measurePower (channel):
+    bitData = readChannel(channel)
+    volt = convertVolt(bitData)
+    current = convertCurrent(bitData)
 
+    return [volt, current]
 
 
 
@@ -71,10 +77,11 @@ while True:
 #verbraucherLevel
 #Batterie_level
 #Solarpanel_level
+    data = measurePower(2)
     print ("--------------------------------------------")
     #print("Verbraucher: ({}V)".format(averageVerbraucher))
     #print("Batterie   : ({}V)".format(averageBattery))
-    print("Solarpanel : ({}V)".format(current(2)))
+    print("Solarpanel : {}V {}A".format(data[0], data[1]))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
     time.sleep(0.5)
