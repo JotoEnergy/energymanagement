@@ -69,7 +69,7 @@ def convertPower(volt, ampere):
 
 while True:
 
-    now = time.time()
+    now = round(time.time())
 
     verbraucherStorage = []
     batteryStorage = []
