@@ -356,17 +356,7 @@
 		})
 	</script>
 
-    <script>
-        var socket = io.connect();
-        socket.on('news', function (data) {
-            console.log(data);
-            socket.emit('my other event', { my: 'data' });
-        });
-
-        socket.on('updates', function (data) {
-            console.log(data);
-        });
-    </script>
+    <script src="js/energyManager/nrg.js"></script>
 </body>
 
 </html>
