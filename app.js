@@ -43,7 +43,7 @@ io.on('connection', function (socket) {
     connection.query('SELECT * FROM powerSensor ORDER BY datum DESC LIMIT 1000' , function(err, rows, fields) {
         if (err) throw err;
 
-        console.log(rows);
+        //console.log(rows);
         socket.emit('updates', { data: rows });
         connection.end();
     });
@@ -57,7 +57,7 @@ io.on('connection', function (socket) {
         connection.query('SELECT * FROM powerSensor' , function(err, rows, fields) {
             if (err) throw err;
 
-            console.log(rows);
+            //console.log(rows);
             socket.emit('updates', { data: rows });
             connection.end();
         });

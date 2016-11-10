@@ -14,7 +14,7 @@ var NRG = (function (NRG, $, undefined) {
 
             var dataArray = data.data;
             var amountData = dataArray.length;
-            
+
             var lastItem = dataArray[amountData-1];
             var power = lastItem.power;
             var inputPower = 0;
