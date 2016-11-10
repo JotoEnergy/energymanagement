@@ -118,8 +118,9 @@ var NRG = (function (NRG, $, undefined) {
 	];
 
 
+
 	window.onload = function(){
-		
+
 		setInterval(function()  {
 
 			var lineChartData = {
@@ -142,9 +143,18 @@ var NRG = (function (NRG, $, undefined) {
 
 			var chart1 = document.getElementById("line-chart").getContext("2d");
 			window.myLine = new Chart(chart1).Line(lineChartData, {
-				responsive: true
+				responsive: true,
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}]
+					}
+				}
 			});
-		}, 2000);
+		}, 10000);
 
 		/*
 		var chart2 = document.getElementById("bar-chart").getContext("2d");
