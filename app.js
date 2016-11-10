@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
     //Start first GUI Update
     var connection = createMysqlConnection();
     connection.connect();
-    connection.query('SELECT * FROM powerSensor' , function(err, rows, fields) {
+    connection.query('SELECT * FROM powerSensor ORDER BY TIMESTAMP DESC LIMIT 10' , function(err, rows, fields) {
         if (err) throw err;
 
         console.log(rows);
