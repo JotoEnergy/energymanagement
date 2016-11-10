@@ -4,7 +4,6 @@ import time
 import os
 import MySQLdb
 
-
 def mysqlConnect ():
 
     db = MySQLdb.connect(host="localhost",    # your host, usually localhost
@@ -41,8 +40,6 @@ def convertVolt (input1):
     return (input1 * 3.3) / float(1024)
 
 #def newConvertVolt (input1, decimals):
-
-
 def convertCurrent (data):
 
     return (data - 500) / 19
