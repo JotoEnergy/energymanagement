@@ -142,8 +142,7 @@ var NRG = (function (NRG, $, undefined) {
 
 
 			var chart1 = document.getElementById("line-chart").getContext("2d");
-			window.myLine = new Chart(chart1).Line(lineChartData, {
-				responsive: true,
+			window.myLine = new Chart(chart1,{
 				options: {
 					scales: {
 						yAxes: [{
@@ -152,7 +151,8 @@ var NRG = (function (NRG, $, undefined) {
 							}
 						}]
 					}
-				}
+				}).Line(lineChartData, {
+				responsive: true
 			});
 		}, 10000);
 
