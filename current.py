@@ -10,9 +10,6 @@ delay = 1 #int(input('Type delay between readings: '))
 spi = spidev.SpiDev()
 spi.open(0, 0)
 
-
-
-
 # Function to read SPI data from MCP3008 chip
 # Channel must be an integer 0-7
 def readChannel(channel):
@@ -29,8 +26,7 @@ def convertVolt (input1):
 #def newConvertVolt (input1, decimals):
 
 
-def convertCurrent (channel):
-    data = readChannel(channel)
+def convertCurrent (data):
 
     return (data - 500) / 19
 
