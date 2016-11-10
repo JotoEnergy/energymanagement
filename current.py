@@ -47,7 +47,7 @@ while True:
     batteryStorage = []
     solarStorage = []
 
-    #for i in xrange(1, 5):
+    for i in xrange(1, 200):
 
         #Convert to Volts
         #verbraucherVolts = convertVolt(readChannel(0))
@@ -60,13 +60,16 @@ while True:
         #Write to array and create average
         #verbraucherStorage.append(verbraucherVolts)
         #batteryStorage.append(batteryVolts)
-        #solarStorage.append(current(2))
-        #time.sleep(0.1)
+
+
+        solarPanel = measurePower(2)
+        solarStorage.append(solarPanel)
+        time.sleep(0.05)
 
     #Average Array
     #averageVerbraucher = round(reduce(lambda x, y: x + y, verbraucherStorage) / len(verbraucherStorage),3)
    # averageBattery = round(reduce(lambda x, y: x + y, batteryStorage) / len(batteryStorage),3)
-    #averageSolar = reduce(lambda x, y: x + y, solarStorage) / len(solarStorage)
+    averageSolar = round(reduce(lambda x, y: x + y, solarStorage) / len(solarStorage))
 
     # Print out results
 
@@ -74,13 +77,13 @@ while True:
 #Batterie_level
 #Solarpanel_level
     data = measurePower(2)
-    currentOutput = (float(data[0]) - 500) / 19  * 1000
+    currentOutput = (float(data[0]) - float(500)) / float(19)  * float(1000)
     print ("--------------------------------------------")
     #print("Verbraucher: ({}V)".format(averageVerbraucher))
     #print("Batterie   : ({}V)".format(averageBattery))
-    print("Solarpanel : Bits {} | {}V | {}A".format(data[0],round(data[1], 3), currentOutput))
+    print("Solarpanel : Bits {} | {}V | {}mA".format(data[0],round(data[1], 3), averageSolar))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
-    time.sleep(0.5)
+    #time.sleep(0.5)
 
     # Wait before repeating loop
