@@ -37,7 +37,7 @@ def measurePower (channel):
     volt = convertVolt(bitData)
     current = convertCurrent(bitData)
 
-    return [bits, volt, current]
+    return [bitData, volt, current]
 
 
 
