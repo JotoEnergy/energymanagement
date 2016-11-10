@@ -16,7 +16,7 @@ device = "Verbraucher"
 power = 10
 volt = 1.5
 # Use all the SQL you like
-cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES ('{}', '{}', '{}', '{}')".format(now, power, volt, device) )
+cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES ('{}', '{}', '{}', '{}');".format(now, power, volt, device) )
 
 try:
     # Execute the SQL command
