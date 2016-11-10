@@ -16,11 +16,11 @@ device = "Verbraucher"
 power = 10
 volt = 1.5
 # Use all the SQL you like
-cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES ('1', '2', '3', '4');" )
+
 
 try:
     # Execute the SQL command
-    cursor.execute(sql)
+    cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES ('1', '2', '3', '4')" )
     # Commit your changes in the database
     db.commit()
 except:
