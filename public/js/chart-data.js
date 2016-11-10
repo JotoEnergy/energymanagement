@@ -142,9 +142,8 @@ var NRG = (function (NRG, $, undefined) {
 
 
 			var chart1 = document.getElementById("line-chart").getContext("2d");
-			window.myLine = new Chart(chart1, {
-				type: 'line',
-				data: lineChartData,
+			window.myLine = new Chart(chart1).Line(lineChartData, {
+				responsive: true,
 				options: {
 					scales: {
 						yAxes: [{
