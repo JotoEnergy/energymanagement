@@ -74,10 +74,11 @@ while True:
 #Batterie_level
 #Solarpanel_level
     data = measurePower(2)
+    currentOutput = ( (data[0] - 500) / 19 ) * 1000
     print ("--------------------------------------------")
     #print("Verbraucher: ({}V)".format(averageVerbraucher))
     #print("Batterie   : ({}V)".format(averageBattery))
-    print("Solarpanel : Bits {} | {}V | {}A".format(data[0],round(data[1], 3), (float((data[0] - 500) / 19 )) ))
+    print("Solarpanel : Bits {} | {}V | {}A".format(data[0],round(data[1], 3), currentOutput))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
     time.sleep(0.5)
