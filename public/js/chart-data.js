@@ -160,7 +160,7 @@ var NRG = (function (NRG, $, undefined) {
 
 			NRG.loadLineChart();
 
-		}, 10000);
+		}, 5000);
 
 		/*
 		var chart2 = document.getElementById("bar-chart").getContext("2d");
@@ -170,10 +170,11 @@ var NRG = (function (NRG, $, undefined) {
 		var chart3 = document.getElementById("doughnut-chart").getContext("2d");
 		window.myDoughnut = new Chart(chart3).Doughnut(doughnutData, {responsive : true
 		});
-		*/
+
 		var chart4 = document.getElementById("pie-chart").getContext("2d");
 		window.myPie = new Chart(chart4).Pie(pieData, {responsive : true
 		});
+		 */
 
 	};
 
