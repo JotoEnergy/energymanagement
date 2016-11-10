@@ -20,7 +20,7 @@ volt = 1.5
 
 try:
     # Execute the SQL command
-    cursor.execute("DELET * FROM powerSensor" )
+    cursor.execute("DELET * FROM powerSensor;" )
     # Commit your changes in the database
     db.commit()
 except:
