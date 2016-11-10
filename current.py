@@ -10,7 +10,7 @@ delay = 1 #int(input('Type delay between readings: '))
 spi = spidev.SpiDev()
 spi.open(0, 0)
 
-# Offset für Solar, Verbraucher, Battery
+
 offset = [300, 0, 0]
 
 # Function to read SPI data from MCP3008 chip
