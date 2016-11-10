@@ -28,7 +28,7 @@ def convertVolt (input1):
 
 def convertCurrent (data):
 
-    return (data - 500) / 19
+    return str((data - 500) / 19)
 
 
 #Give SPI Channel and receive Array: [0] - Volt, [1] - Current
