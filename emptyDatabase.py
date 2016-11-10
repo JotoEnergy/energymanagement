@@ -11,16 +11,9 @@ db = MySQLdb.connect(host="localhost",    # your host, usually localhost
 #  you execute all the queries you need
 cursor = db.cursor()
 
-now = time.time()
-device = "Verbraucher"
-power = 10
-volt = 1.5
-# Use all the SQL you like
-
-
 try:
     # Execute the SQL command
-    cursor.execute("DELET * FROM powerSensor;" )
+    cursor.execute("DELETE * FROM powerSensor" )
     # Commit your changes in the database
     db.commit()
 except:

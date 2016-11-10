@@ -61,8 +61,8 @@
       <file leaf-file-name="emptyDatabase.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/emptyDatabase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+            <state relative-caret-position="300">
+              <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
               <folding>
                 <element signature="e#18#32#0" expanded="true" />
               </folding>
@@ -872,12 +872,12 @@
       <option name="presentableId" value="Default" />
       <updated>1478729888724</updated>
       <workItem from="1478729890382" duration="14841000" />
-      <workItem from="1478769701009" duration="2714000" />
+      <workItem from="1478769701009" duration="2747000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17555000" />
+    <option name="totallyTimeSpent" value="17588000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
@@ -1007,8 +1007,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/emptyDatabase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+        <state relative-caret-position="300">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
           <folding>
             <element signature="e#18#32#0" expanded="true" />
           </folding>
