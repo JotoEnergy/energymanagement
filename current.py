@@ -77,7 +77,7 @@ while True:
     print ("--------------------------------------------")
     #print("Verbraucher: ({}V)".format(averageVerbraucher))
     #print("Batterie   : ({}V)".format(averageBattery))
-    print("Solarpanel : Bits {} | {}V | {}A".format(data[0],round(data[1], 3), ((data[0] - 500) / 19 ) ))
+    print("Solarpanel : Bits {} | {}V | {}A".format(data[0],round(data[1], 3), (float((data[0] - 500) / 19 )) ))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
     time.sleep(0.5)
