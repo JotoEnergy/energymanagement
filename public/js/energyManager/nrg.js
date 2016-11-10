@@ -16,6 +16,20 @@ var NRG = (function (NRG, $, undefined) {
             var dataArray = data.data;
             var amountData = dataArray.length;
 
+            NRG.inputData = dataArray;
+            NRG.powerData = {
+                "datum": [],
+                "power": []
+            } ;
+
+            $.each(NRG.inputData, function(key, value) {
+               NRG.powerData.power.push(value.power);
+                NRG.powerData.datum.push(value.datum);
+            });
+
+            //Just short hack
+            NRG.powerData.power.slice(0,6);
+
             var lastItem = dataArray[amountData-1];
             var power = lastItem.power;
             var inputPower = 0;
