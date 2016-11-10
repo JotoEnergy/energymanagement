@@ -74,7 +74,7 @@ while True:
 #Batterie_level
 #Solarpanel_level
     data = measurePower(2)
-    currentOutput = ( (data[0] - 500) / 19 ) * 1000
+    currentOutput = (float(data[0]) - float(500)) / float(19)  * float(1000)
     print ("--------------------------------------------")
     #print("Verbraucher: ({}V)".format(averageVerbraucher))
     #print("Batterie   : ({}V)".format(averageBattery))
