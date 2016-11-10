@@ -9,8 +9,8 @@ db = MySQLdb.connect(host="localhost",    # your host, usually localhost
                      passwd="joto123",  # your password
                      db="raspi")        # name of the data base
 
-cursor = db.cursor()
-now = time.time()
+#cursor = db.cursor()
+
 
 #pin_number = int(input('Type in the chip pin number you want to use: '))
 # Define delay between readings
@@ -64,6 +64,8 @@ def convertPower(volt, ampere):
 
 
 while True:
+
+    now = time.time()
 
     verbraucherStorage = []
     batteryStorage = []
@@ -142,6 +144,7 @@ while True:
     print("Solarpanel : Bits {} | {}V | {}mA | {}W".format(solarData[0],round(solarData[1], 3), round(averageSolar), round(averageSolarWatt)))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
+    cursor = db.cursor()
     device = "Verbraucher"
     try:
         # Execute the SQL command
@@ -151,6 +154,8 @@ while True:
     except:
         # Rollback in case there is any error
         db.rollback()
+
+    db.close()
 
 
 

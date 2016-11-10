@@ -26,11 +26,11 @@
       <file leaf-file-name="current.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/current.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="667">
-              <caret line="152" column="21" selection-start-line="152" selection-start-column="21" selection-end-line="152" selection-end-column="21" />
+            <state relative-caret-position="-800">
+              <caret line="71" column="21" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
               <folding>
                 <element signature="e#18#31#0" expanded="true" />
-                <marker date="1478772746385" expanded="true" signature="5142:5226" ph="INSERT INTO powerSensor... " />
+                <marker date="1478772823052" expanded="true" signature="5174:5258" ph="INSERT INTO powerSensor... " />
               </folding>
             </state>
           </provider>
@@ -874,12 +874,12 @@
       <option name="presentableId" value="Default" />
       <updated>1478729888724</updated>
       <workItem from="1478729890382" duration="14841000" />
-      <workItem from="1478769701009" duration="3045000" />
+      <workItem from="1478769701009" duration="3122000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17886000" />
+    <option name="totallyTimeSpent" value="17963000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
@@ -933,7 +933,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#18#31#0" expanded="true" />
-            <marker date="1478772746385" expanded="true" signature="5142:5226" ph="INSERT INTO powerSensor... " />
+            <marker date="1478772823052" expanded="true" signature="5174:5258" ph="INSERT INTO powerSensor... " />
           </folding>
         </state>
       </provider>
@@ -1011,11 +1011,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/current.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="152" column="21" selection-start-line="152" selection-start-column="21" selection-end-line="152" selection-end-column="21" />
+        <state relative-caret-position="-800">
+          <caret line="71" column="21" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
           <folding>
             <element signature="e#18#31#0" expanded="true" />
-            <marker date="1478772746385" expanded="true" signature="5142:5226" ph="INSERT INTO powerSensor... " />
+            <marker date="1478772823052" expanded="true" signature="5174:5258" ph="INSERT INTO powerSensor... " />
           </folding>
         </state>
       </provider>
