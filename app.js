@@ -31,9 +31,9 @@ app.get('/', function(req, res) {
 
 
 io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-        console.log(data);
+    socket.emit('check', { hello: 'world' });
+    socket.on('established', function (data) {
+        console.log('Socket connection successfully established.');
     });
 
 

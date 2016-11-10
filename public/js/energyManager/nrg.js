@@ -4,9 +4,10 @@ var NRG = (function (NRG, $, undefined) {
     NRG.init = function() {
 
         NRG.socket = io.connect();
-        NRG.socket.on('news', function (data) {
-            console.log(data);
-            NRG.socket.emit('my other event', { my: 'data' });
+        NRG.socket.on('check', function (data) {
+            //console.log(data);
+            console.log('Socket connected');
+            NRG.socket.emit('established');
         });
 
         NRG.socket.on('updates', function (data) {
