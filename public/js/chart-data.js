@@ -124,8 +124,12 @@ var NRG = (function (NRG, $, undefined) {
 			animation : false
 		};
 
+		var timeIndexes = NRG.powerData.datum;
+
+
+
 		var lineChartData = {
-			labels : ["January","February","March","April","May","June","July"],
+			labels : timeIndexes,
 			datasets : [
 				{
 					label: "Verbraucher",

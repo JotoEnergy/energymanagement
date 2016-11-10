@@ -28,7 +28,7 @@ var NRG = (function (NRG, $, undefined) {
             });
 
             //Just short hack
-            NRG.powerData.power.slice(0,6);
+            NRG.powerData.power.slice(0,50);
 
             var lastItem = dataArray[amountData-1];
             var power = lastItem.power;
