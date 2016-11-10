@@ -47,6 +47,9 @@ var NRG = (function (NRG, $, undefined) {
                 outputPower = lastItem.power;
             }
             //console.log(value.power)
+            var difference = outputPower - inputPower;
+            var powerPrice = (difference / 1000) * 0.25;
+            $("#price_kwh").html(powerPrice + '€');
             $("#total_incoming_power").html(inputPower + 'W');
             $("#total_devices").html('1');
             $("#power_output").html(outputPower + 'W');
