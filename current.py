@@ -10,7 +10,8 @@ delay = 1 #int(input('Type delay between readings: '))
 spi = spidev.SpiDev()
 spi.open(0, 0)
 
-eichung = 300
+# Offset für Solar, Verbraucher, Battery
+offset = [300, 0, 0]
 
 # Function to read SPI data from MCP3008 chip
 # Channel must be an integer 0-7
@@ -63,17 +64,26 @@ while True:
         #verbraucherStorage.append(verbraucherVolts)
         #batteryStorage.append(batteryVolts)
 
-        data = measurePower(2)
+        solarData = measurePower(2)
+        solarOutput = (float(solarData[0]) - float(500)) / float(19)  * float(1000)
+        solarOutput = float(solarOutput) + float(offset[0])
 
-        currentOutput = (float(data[0]) - float(500)) / float(19)  * float(1000)
-        currentOutput = float(currentOutput) + float(eichung)
+        batteryData = measurePower(1)
+        batteryOutput = (float(batteryData[0]) - float(500)) / float(19)  * float(1000)
+        batteryOutput = float(batteryOutput) + float(offset[1])
 
-        solarStorage.append(currentOutput)
+        verbraucherData = measurePower(0)
+        verbraucherOutput = (float(verbraucherData[0]) - float(500)) / float(19)  * float(1000)
+        verbraucherOutput = float(verbraucherOutput) + float(offset[1])
+
+        solarStorage.append(solarOutput)
+        batteryStorage.append(batteryOutput)
+        verbraucherStorage.append(verbraucherOutput)
         time.sleep(0.01)
 
     #Average Array
-    #averageVerbraucher = round(reduce(lambda x, y: x + y, verbraucherStorage) / len(verbraucherStorage),3)
-   # averageBattery = round(reduce(lambda x, y: x + y, batteryStorage) / len(batteryStorage),3)
+    averageVerbraucher = round(reduce(lambda x, y: x + y, verbraucherStorage) / len(verbraucherStorage),3)
+    averageBattery = round(reduce(lambda x, y: x + y, batteryStorage) / len(batteryStorage),3)
     averageSolar = reduce(lambda x, y: x + y, solarStorage) / len(solarStorage)
 
     # Print out results
@@ -83,9 +93,9 @@ while True:
 #Solarpanel_level
 
     print ("--------------------------------------------")
-    #print("Verbraucher: ({}V)".format(averageVerbraucher))
-    #print("Batterie   : ({}V)".format(averageBattery))
-    print("Solarpanel : Bits {} | {}V | {}mA".format(data[0],round(data[1], 3), averageSolar))
+    print("Verbraucher: Bits {} | {}V | {}mA)".format(verbraucherData[0],round(verbraucherData[1], 3), averageVerbraucher)))
+    print("Batterie   : Bits {} | {}V | {}mA)".format(batteryData[0],round(batteryData[1], 3), averageBattery)))
+    print("Solarpanel : Bits {} | {}V | {}mA".format(solarData[0],round(solarData[1], 3), averageSolar))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
     #time.sleep(0.5)
