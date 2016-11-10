@@ -22,13 +22,16 @@ var NRG = (function (NRG, $, undefined) {
                 "power": []
             } ;
 
-            $.each(NRG.inputData, function(key, value) {
-               NRG.powerData.power.push(value.power);
-                NRG.powerData.datum.push(value.datum);
-            });
 
-            //Just short hack
-            NRG.powerData.power.slice(0,50);
+            //Iterate through every maxVal item
+            var maxVal = 50;
+            var delta = Math.floor( NRG.inputData / maxVal );
+            for (var i = 0; i < NRG.inputData.length; i=i+delta) {
+                arr.push(oldArr[i]);
+                NRG.powerData.power.push(NRG.inputData[i].power);
+                NRG.powerData.datum.push(NRG.inputData[i].datum);
+            }
+
 
             var lastItem = dataArray[amountData-1];
             var power = lastItem.power;
