@@ -9,13 +9,20 @@ db = MySQLdb.connect(host="localhost",    # your host, usually localhost
 
 # you must create a Cursor object. It will let
 #  you execute all the queries you need
-cur = db.cursor()
+cursor = db.cursor()
 
 now = datetime.datetime.now()
 # Use all the SQL you like
-cur.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES (%s, %s, %s, %s)", (now, 10, 1.5, 'Verbraucher'))
+cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES (%s, %s, %s, %s)", (now, 10, 1.5, 'Verbraucher'))
 
-# print all the first cell of all the rows
 
+try:
+    # Execute the SQL command
+    cursor.execute(sql)
+    # Commit your changes in the database
+    db.commit()
+except:
+    # Rollback in case there is any error
+    db.rollback()
 
 db.close()
