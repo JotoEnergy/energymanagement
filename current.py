@@ -117,7 +117,7 @@ while True:
     averageBatteryWatt = round(reduce(lambda x, y: x + y, batteryWattStorage) / len(batteryWattStorage),3)
     averageSolarWatt = reduce(lambda x, y: x + y, solarWattStorage) / len(solarWattStorage)
 
-    verbraucherPrice = (averageVerbraucherWatt / 1000) * 0.25
+    verbraucherPrice = (float(averageVerbraucherWatt) / float(1000)) * float(0.25)
 
 
     # Print out results
@@ -127,7 +127,7 @@ while True:
 #Solarpanel_level
 
     print ("--------------------------------------------")
-    print("Verbraucher: Bits {} | {}V | {}mA | {}W | Preis {} Euro pro h".format(verbraucherData[0],round(verbraucherData[1], 3), round(averageVerbraucher), round(averageVerbraucherWatt), round(verbraucherPrice)))
+    print("Verbraucher: Bits {} | {}V | {}mA | {}W | Preis {} Euro pro h".format(verbraucherData[0],round(verbraucherData[1], 3), round(averageVerbraucher), round(averageVerbraucherWatt), verbraucherPrice))
     #print("Batterie   : Bits {} | {}V | {}mA".format(batteryData[0],round(batteryData[1], 3), averageBattery))
     print("Solarpanel : Bits {} | {}V | {}mA | {}W".format(solarData[0],round(solarData[1], 3), round(averageSolar), round(averageSolarWatt)))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
