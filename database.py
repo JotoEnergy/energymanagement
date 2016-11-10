@@ -20,7 +20,7 @@ volt = 1.5
 
 try:
     # Execute the SQL command
-    cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES ('{}', '2', '3', '4')".format(now) )
+    cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES ('{}', '{}', '{}', '{}')".format(now, power, volt, device) )
     # Commit your changes in the database
     db.commit()
 except:
