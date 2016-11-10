@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7cac158c-7c63-4b78-94e7-b0350349384f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database.py" afterPath="$PROJECT_DIR$/database.py" />
-    </list>
+    <list default="true" id="7cac158c-7c63-4b78-94e7-b0350349384f" name="Default" comment="" />
     <ignored path="energymanagement.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -860,12 +858,12 @@
       <option name="presentableId" value="Default" />
       <updated>1478729888724</updated>
       <workItem from="1478729890382" duration="14841000" />
-      <workItem from="1478769701009" duration="1462000" />
+      <workItem from="1478769701009" duration="1469000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16303000" />
+    <option name="totallyTimeSpent" value="16310000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
