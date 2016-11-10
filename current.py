@@ -10,8 +10,8 @@ delay = 1 #int(input('Type delay between readings: '))
 spi = spidev.SpiDev()
 spi.open(0, 0)
 
-
-offset = [300, 0, 0]
+# Offset 1) Solar 2) Battery 3) Verbraucher
+offset = [300, 0, 500]
 
 # Function to read SPI data from MCP3008 chip
 # Channel must be an integer 0-7
@@ -42,6 +42,11 @@ def measurePower (channel):
 
     return [bitData, volt, current]
 
+def setOffset (data, offsetHeight):
+    if(data > 0):
+        return data - offsetHeight
+    else:
+        return data + offsetHeight
 
 
 while True:
@@ -66,15 +71,15 @@ while True:
 
         solarData = measurePower(2)
         solarOutput = (float(solarData[0]) - float(500)) / float(19)  * float(1000)
-        solarOutput = float(solarOutput) + float(offset[0])
+        solarOutput = float(solarOutput) + float(setOffset(offset[0]))
 
         batteryData = measurePower(1)
         batteryOutput = (float(batteryData[0]) - float(500)) / float(19)  * float(1000)
-        batteryOutput = float(batteryOutput) + float(offset[1])
+        batteryOutput = float(batteryOutput) + float(setOffset(offset[1]))
 
         verbraucherData = measurePower(0)
         verbraucherOutput = (float(verbraucherData[0]) - float(500)) / float(19)  * float(1000)
-        verbraucherOutput = float(verbraucherOutput) + float(offset[1])
+        verbraucherOutput = float(verbraucherOutput) + float(setOffset(offset[2]))
 
         solarStorage.append(solarOutput)
         batteryStorage.append(batteryOutput)
@@ -93,8 +98,8 @@ while True:
 #Solarpanel_level
 
     print ("--------------------------------------------")
-    print("Verbraucher: Bits {} | {}V | {}mA)".format(verbraucherData[0],round(verbraucherData[1], 3), averageVerbraucher))
-    print("Batterie   : Bits {} | {}V | {}mA)".format(batteryData[0],round(batteryData[1], 3), averageBattery))
+    print("Verbraucher: Bits {} | {}V | {}mA".format(verbraucherData[0],round(verbraucherData[1], 3), averageVerbraucher))
+    print("Batterie   : Bits {} | {}V | {}mA".format(batteryData[0],round(batteryData[1], 3), averageBattery))
     print("Solarpanel : Bits {} | {}V | {}mA".format(solarData[0],round(solarData[1], 3), averageSolar))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
