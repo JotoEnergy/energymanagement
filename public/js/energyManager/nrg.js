@@ -27,12 +27,12 @@ var NRG = (function (NRG, $, undefined) {
             var maxVal = 50;
             var delta = Math.floor( NRG.inputData / maxVal );
             for (var i = 0; i < NRG.inputData.length; i=i+delta) {
-                NRG.powerData.power.push(NRG.inputData[i].power);
-
+                
                 var x = new Date();
                 x.setTime(NRG.inputData[i].datum * 1000);
 
-                NRG.powerData.datum.push(x.toGMTString());
+                NRG.powerData.datum.push(x.toLocaleString());
+                NRG.powerData.power.push(NRG.inputData[i].power);
             }
 
 
