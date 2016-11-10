@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7cac158c-7c63-4b78-94e7-b0350349384f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/current.py" afterPath="$PROJECT_DIR$/current.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/emptyDatabase.py" afterPath="$PROJECT_DIR$/emptyDatabase.py" />
     </list>
     <ignored path="energymanagement.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,11 +26,11 @@
       <file leaf-file-name="current.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/current.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1347">
-              <caret line="132" column="14" selection-start-line="132" selection-start-column="14" selection-end-line="132" selection-end-column="14" />
+            <state relative-caret-position="667">
+              <caret line="152" column="21" selection-start-line="152" selection-start-column="21" selection-end-line="152" selection-end-column="21" />
               <folding>
                 <element signature="e#18#31#0" expanded="true" />
-                <marker date="1478772671789" expanded="true" signature="5142:5226" ph="INSERT INTO powerSensor... " />
+                <marker date="1478772746385" expanded="true" signature="5142:5226" ph="INSERT INTO powerSensor... " />
               </folding>
             </state>
           </provider>
@@ -875,12 +874,12 @@
       <option name="presentableId" value="Default" />
       <updated>1478729888724</updated>
       <workItem from="1478729890382" duration="14841000" />
-      <workItem from="1478769701009" duration="2973000" />
+      <workItem from="1478769701009" duration="3045000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17814000" />
+    <option name="totallyTimeSpent" value="17886000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
@@ -934,7 +933,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#18#31#0" expanded="true" />
-            <marker date="1478772671789" expanded="true" signature="5142:5226" ph="INSERT INTO powerSensor... " />
+            <marker date="1478772746385" expanded="true" signature="5142:5226" ph="INSERT INTO powerSensor... " />
           </folding>
         </state>
       </provider>
@@ -1012,11 +1011,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/current.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1347">
-          <caret line="132" column="14" selection-start-line="132" selection-start-column="14" selection-end-line="132" selection-end-column="14" />
+        <state relative-caret-position="667">
+          <caret line="152" column="21" selection-start-line="152" selection-start-column="21" selection-end-line="152" selection-end-column="21" />
           <folding>
             <element signature="e#18#31#0" expanded="true" />
-            <marker date="1478772671789" expanded="true" signature="5142:5226" ph="INSERT INTO powerSensor... " />
+            <marker date="1478772746385" expanded="true" signature="5142:5226" ph="INSERT INTO powerSensor... " />
           </folding>
         </state>
       </provider>

@@ -152,8 +152,6 @@ while True:
         # Rollback in case there is any error
         db.rollback()
 
-    db.close()
-
 
 
 
