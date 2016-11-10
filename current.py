@@ -50,7 +50,7 @@ def setOffset (data, offsetHeight):
 
 
 def convertPower(volt, ampere):
-    return (float(volt)*float(ampere) / 1000)
+    return (float(volt)*float(ampere) / 1000) / 1000
 
 
 while True:
