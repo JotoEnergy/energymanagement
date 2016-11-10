@@ -66,7 +66,7 @@ while True:
         data = measurePower(2)
 
         currentOutput = (float(data[0]) - float(500)) / float(19)  * float(1000)
-        currentOutput = float(currentOutput) - float(eichung)
+        currentOutput = float(currentOutput) + float(eichung)
 
         solarStorage.append(currentOutput)
         time.sleep(0.01)
