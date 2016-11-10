@@ -42,9 +42,9 @@ var NRG = (function (NRG, $, undefined) {
             var inputPower = 0;
             var outputPower = 0;
             if(lastItem.power < 0) {
-                outputPower = lastItem.power * -1;
+                inputPower = lastItem.power * -1;
             } else {
-                inputPower = lastItem.power;
+                outputPower = lastItem.power;
             }
             //console.log(value.power)
             $("#total_incoming_power").html(inputPower + 'W');
