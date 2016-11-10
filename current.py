@@ -69,7 +69,7 @@ def convertPower(volt, ampere):
 
 while True:
 
-    now = round(time.time())
+    now = str(round(time.time()))
 
     verbraucherStorage = []
     batteryStorage = []
@@ -142,7 +142,7 @@ while True:
     #Batterie_level
     #Solarpanel_level
 
-    averageVerbraucherWatt = str(averageVerbraucherWatt * (-1))
+    averageVerbraucherWatt = averageVerbraucherWatt * (-1)
     print ("--------------------------------------------")
     print("Verbraucher: Bits {} | {}V | {}mA | {}W | Preis {} Euro pro h".format(verbraucherData[0],round(verbraucherData[1], 3), round(averageVerbraucher), round(averageVerbraucherWatt), verbraucherPrice))
     #print("Batterie   : Bits {} | {}V | {}mA".format(batteryData[0],round(batteryData[1], 3), averageBattery))
