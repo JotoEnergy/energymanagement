@@ -118,39 +118,44 @@ var NRG = (function (NRG, $, undefined) {
 	];
 
 
+	NRG.loadLineChart = function() {
+
+		Chart.defaults.Line = {
+			animationSteps : 0
+		};
+
+		var lineChartData = {
+			labels : ["January","February","March","April","May","June","July"],
+			datasets : [
+				{
+					label: "Verbraucher",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : NRG.powerData.power
+				}
+			]
+
+		};
+
+
+		var chart1 = document.getElementById("line-chart").getContext("2d");
+		window.myLine = new Chart(chart1).Line(lineChartData, {
+			responsive: true
+		});
+
+	};
 
 	window.onload = function(){
 
-		Chart.defaults.global = {
-			animationSteps : 0,
-			scaleLineColor : 'black',
-			scaleFontSize : 16
-		};
 
 		setInterval(function()  {
 
-			var lineChartData = {
-				labels : ["January","February","March","April","May","June","July"],
-				datasets : [
-					{
-						label: "Verbraucher",
-						fillColor : "rgba(220,220,220,0.2)",
-						strokeColor : "rgba(220,220,220,1)",
-						pointColor : "rgba(220,220,220,1)",
-						pointStrokeColor : "#fff",
-						pointHighlightFill : "#fff",
-						pointHighlightStroke : "rgba(220,220,220,1)",
-						data : NRG.powerData.power
-					}
-				]
+			NRG.loadLineChart();
 
-			}
-
-
-			var chart1 = document.getElementById("line-chart").getContext("2d");
-			window.myLine = new Chart(chart1).Line(lineChartData, {
-				responsive: true
-			});
 		}, 10000);
 
 		/*
