@@ -49,11 +49,19 @@ def setOffset (data, offsetHeight):
         return data + offsetHeight
 
 
+def convertPower(volt, ampere):
+    return float(volt)*float(ampere)
+
+
 while True:
 
     verbraucherStorage = []
     batteryStorage = []
     solarStorage = []
+
+    verbraucherWattStorage = []
+    batteryWattStorage = []
+    solarWattStorage = []
 
     for i in xrange(1, 100):
 
@@ -69,27 +77,45 @@ while True:
         #verbraucherStorage.append(verbraucherVolts)
         #batteryStorage.append(batteryVolts)
 
+        #Measure Power (Bits - Volt - Current) - input SPI Channel
         solarData = measurePower(2)
+        #Get Bits and use linear algebra to find floating around 0
         solarOutput = (float(solarData[0]) - float(500)) / float(19)  * float(1000)
+        #Set Offset
         solarOutput = setOffset(float(solarOutput), float(offset[0]))
+        #miliAmpere * miliWatt (12500 hardcoded)
+        solarWatt = convertPower(12500, solarOutput)
 
+        #Measure Power (Bits - Volt - Current) - input SPI Channel
         batteryData = measurePower(1)
         batteryOutput = (float(batteryData[0]) - float(500)) / float(19)  * float(1000)
         batteryOutput =  setOffset(float(batteryOutput), float(offset[1]))
+        batteryWatt = convertPower(12500, batteryOutput)
 
+        #Measure Power (Bits - Volt - Current) - input SPI Channel
         verbraucherData = measurePower(0)
         verbraucherOutput = (float(verbraucherData[0]) - float(500)) / float(19)  * float(1000)
         verbraucherOutput = setOffset(float(verbraucherOutput), float(offset[2]))
+        verbraucherWatt = convertPower(12500, verbraucherOutput)
 
+        #Store in Array to create average of 100 calls
         solarStorage.append(solarOutput)
         batteryStorage.append(batteryOutput)
         verbraucherStorage.append(verbraucherOutput)
+
+        verbraucherWattStorage.append(verbraucherWatt)
+        batteryWattStorage.append(batteryWatt)
+        solarWattStorage.append(solarWatt)
         time.sleep(0.01)
 
     #Average Array
     averageVerbraucher = round(reduce(lambda x, y: x + y, verbraucherStorage) / len(verbraucherStorage),3)
     averageBattery = round(reduce(lambda x, y: x + y, batteryStorage) / len(batteryStorage),3)
     averageSolar = reduce(lambda x, y: x + y, solarStorage) / len(solarStorage)
+
+    averageVerbraucherWatt = round(reduce(lambda x, y: x + y, verbraucherWattStorage) / len(verbraucherWattStorage),3)
+    averageBatteryWatt = round(reduce(lambda x, y: x + y, batteryWattStorage) / len(batteryWattStorage),3)
+    averageSolarWatt = reduce(lambda x, y: x + y, solarWattStorage) / len(solarWattStorage)
 
     # Print out results
 
@@ -98,9 +124,9 @@ while True:
 #Solarpanel_level
 
     print ("--------------------------------------------")
-    print("Verbraucher: Bits {} | {}V | {}mA".format(verbraucherData[0],round(verbraucherData[1], 3), averageVerbraucher))
+    print("Verbraucher: Bits {} | {}V | {}mA | {}W".format(verbraucherData[0],round(verbraucherData[1], 3), round(averageVerbraucher), round(averageVerbraucherWatt)))
     #print("Batterie   : Bits {} | {}V | {}mA".format(batteryData[0],round(batteryData[1], 3), averageBattery))
-    print("Solarpanel : Bits {} | {}V | {}mA".format(solarData[0],round(solarData[1], 3), averageSolar))
+    print("Solarpanel : Bits {} | {}V | {}mA | {}W".format(solarData[0],round(solarData[1], 3), round(averageSolar), round(averageSolarWatt)))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
     #time.sleep(0.5)
