@@ -121,16 +121,6 @@ var NRG = (function (NRG, $, undefined) {
 
 	window.onload = function(){
 
-		Chart.defaults.global = {
-			animationSteps : 0,
-			tooltipYPadding : 16,
-			tooltipCornerRadius : 0,
-			tooltipTitleFontStyle : 'normal',
-			tooltipFillColor : 'rgba(0,160,0,0.8)',
-			scaleLineColor : 'black',
-			scaleFontSize : 16
-		};
-
 		setInterval(function()  {
 
 			var lineChartData = {
