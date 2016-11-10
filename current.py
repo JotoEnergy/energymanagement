@@ -47,7 +47,7 @@ while True:
     batteryStorage = []
     solarStorage = []
 
-    for i in xrange(1, 200):
+    for i in xrange(1, 100):
 
         #Convert to Volts
         #verbraucherVolts = convertVolt(readChannel(0))
@@ -66,7 +66,7 @@ while True:
         currentOutput = (float(data[0]) - float(500)) / float(19)  * float(1000)
 
         solarStorage.append(currentOutput)
-        time.sleep(0.05)
+        time.sleep(0.01)
 
     #Average Array
     #averageVerbraucher = round(reduce(lambda x, y: x + y, verbraucherStorage) / len(verbraucherStorage),3)
