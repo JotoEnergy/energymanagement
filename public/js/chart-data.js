@@ -121,7 +121,7 @@ var NRG = (function (NRG, $, undefined) {
 	NRG.loadLineChart = function() {
 
 		Chart.defaults.Line = {
-			animationSteps : 0
+			animation : false
 		};
 
 		var lineChartData = {
