@@ -10,6 +10,8 @@ delay = 1 #int(input('Type delay between readings: '))
 spi = spidev.SpiDev()
 spi.open(0, 0)
 
+eichung = 300
+
 # Function to read SPI data from MCP3008 chip
 # Channel must be an integer 0-7
 def readChannel(channel):
@@ -64,6 +66,7 @@ while True:
         data = measurePower(2)
 
         currentOutput = (float(data[0]) - float(500)) / float(19)  * float(1000)
+        currentOutput = float(currentOutput) - float(eichung)
 
         solarStorage.append(currentOutput)
         time.sleep(0.01)
