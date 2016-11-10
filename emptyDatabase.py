@@ -13,7 +13,7 @@ cursor = db.cursor()
 
 try:
     # Execute the SQL command
-    cursor.execute("DELETE * FROM powerSensor" )
+    cursor.execute("DELETE FROM powerSensor" )
     # Commit your changes in the database
     db.commit()
 except:

@@ -1,6 +1,16 @@
+#!/usr/bin/python
 import spidev
 import time
 import os
+import MySQLdb
+
+db = MySQLdb.connect(host="localhost",    # your host, usually localhost
+                     user="root",         # your username
+                     passwd="joto123",  # your password
+                     db="raspi")        # name of the data base
+
+cursor = db.cursor()
+now = time.time()
 
 #pin_number = int(input('Type in the chip pin number you want to use: '))
 # Define delay between readings
@@ -122,9 +132,9 @@ while True:
 
     # Print out results
 
-#verbraucherLevel
-#Batterie_level
-#Solarpanel_level
+    #verbraucherLevel
+    #Batterie_level
+    #Solarpanel_level
 
     print ("--------------------------------------------")
     print("Verbraucher: Bits {} | {}V | {}mA | {}W | Preis {} Euro pro h".format(verbraucherData[0],round(verbraucherData[1], 3), round(averageVerbraucher), round(averageVerbraucherWatt), verbraucherPrice))
@@ -132,9 +142,17 @@ while True:
     print("Solarpanel : Bits {} | {}V | {}mA | {}W".format(solarData[0],round(solarData[1], 3), round(averageSolar), round(averageSolarWatt)))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
-    #time.sleep(0.5)
+    device = "Verbraucher"
+    try:
+        # Execute the SQL command
+        cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES ('{}', '{}', '{}', '{}')".format(now, averageVerbraucherWatt, round(verbraucherData[1], 3), device) )
+        # Commit your changes in the database
+        db.commit()
+    except:
+        # Rollback in case there is any error
+        db.rollback()
 
-    # Wait before repeating loop
+    db.close()
 
 
 
