@@ -38,22 +38,7 @@ var NRG = (function (NRG, $, undefined) {
 
 
 
-	var lineChartData = {
-		labels : ["January","February","March","April","May","June","July"],
-		datasets : [
-			{
-				label: "Verbraucher",
-				fillColor : "rgba(220,220,220,0.2)",
-				strokeColor : "rgba(220,220,220,1)",
-				pointColor : "rgba(220,220,220,1)",
-				pointStrokeColor : "#fff",
-				pointHighlightFill : "#fff",
-				pointHighlightStroke : "rgba(220,220,220,1)",
-				data : NRG.powerData.power
-			}
-		]
 
-	}
 
 	var barChartData = {
 		labels : ["January","February","March","April","May","June","July"],
@@ -134,10 +119,34 @@ var NRG = (function (NRG, $, undefined) {
 
 
 	window.onload = function(){
-		var chart1 = document.getElementById("line-chart").getContext("2d");
-		window.myLine = new Chart(chart1).Line(lineChartData, {
-			responsive: true
-		});
+		
+		setInterval(function()  {
+
+			var lineChartData = {
+				labels : ["January","February","March","April","May","June","July"],
+				datasets : [
+					{
+						label: "Verbraucher",
+						fillColor : "rgba(220,220,220,0.2)",
+						strokeColor : "rgba(220,220,220,1)",
+						pointColor : "rgba(220,220,220,1)",
+						pointStrokeColor : "#fff",
+						pointHighlightFill : "#fff",
+						pointHighlightStroke : "rgba(220,220,220,1)",
+						data : NRG.powerData.power
+					}
+				]
+
+			}
+
+
+			var chart1 = document.getElementById("line-chart").getContext("2d");
+			window.myLine = new Chart(chart1).Line(lineChartData, {
+				responsive: true
+			});
+		}, 2000);
+
+		/*
 		var chart2 = document.getElementById("bar-chart").getContext("2d");
 		window.myBar = new Chart(chart2).Bar(barChartData, {
 			responsive : true
@@ -145,6 +154,7 @@ var NRG = (function (NRG, $, undefined) {
 		var chart3 = document.getElementById("doughnut-chart").getContext("2d");
 		window.myDoughnut = new Chart(chart3).Doughnut(doughnutData, {responsive : true
 		});
+		*/
 		var chart4 = document.getElementById("pie-chart").getContext("2d");
 		window.myPie = new Chart(chart4).Pie(pieData, {responsive : true
 		});
