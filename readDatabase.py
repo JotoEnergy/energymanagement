@@ -1,3 +1,4 @@
+
 #!/usr/bin/python
 import MySQLdb
 import datetime
@@ -11,12 +12,11 @@ db = MySQLdb.connect(host="localhost",    # your host, usually localhost
 #  you execute all the queries you need
 cur = db.cursor()
 
-now = datetime.datetime.now()
 # Use all the SQL you like
 cur.execute("SELECT * FROM powerSensor")
 
 # print all the first cell of all the rows
-for row in cur:
-    print(row)
+for row in cur.fetchall():
+    print row[0]
 
 db.close()
