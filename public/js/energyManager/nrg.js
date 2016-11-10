@@ -24,9 +24,10 @@ var NRG = (function (NRG, $, undefined) {
 
 
             //Iterate through every maxVal item
-            var maxVal = amountData * 0.05;
+            var maxVal = 50;
             var delta = Math.floor( NRG.inputData / maxVal );
             for (var i = 0; i < NRG.inputData.length; i=i+delta) {
+                console.log('Enter: ', NRG.inputData[i].datum, NRG.inputData[i].power);
 
                 var x = new Date();
                 x.setTime(NRG.inputData[i].datum * 1000);
