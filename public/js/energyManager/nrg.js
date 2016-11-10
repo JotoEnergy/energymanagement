@@ -27,9 +27,12 @@ var NRG = (function (NRG, $, undefined) {
             var maxVal = 50;
             var delta = Math.floor( NRG.inputData / maxVal );
             for (var i = 0; i < NRG.inputData.length; i=i+delta) {
-                arr.push(oldArr[i]);
                 NRG.powerData.power.push(NRG.inputData[i].power);
-                NRG.powerData.datum.push(NRG.inputData[i].datum);
+
+                var x = new Date();
+                x.setTime(NRG.inputData[i].datum * 1000);
+
+                NRG.powerData.datum.push(x.toGMTString());
             }
 
 
