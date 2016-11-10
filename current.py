@@ -69,7 +69,7 @@ while True:
     #Average Array
     #averageVerbraucher = round(reduce(lambda x, y: x + y, verbraucherStorage) / len(verbraucherStorage),3)
    # averageBattery = round(reduce(lambda x, y: x + y, batteryStorage) / len(batteryStorage),3)
-    averageSolar = round(reduce(lambda x, y: x + y, solarStorage) / len(solarStorage))
+    averageSolar = reduce(lambda x, y: x + y, solarStorage) / len(solarStorage)
 
     # Print out results
 
