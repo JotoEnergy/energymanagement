@@ -61,9 +61,11 @@ while True:
         #verbraucherStorage.append(verbraucherVolts)
         #batteryStorage.append(batteryVolts)
 
+        data = measurePower(2)
 
-        solarPanel = measurePower(2)
-        solarStorage.append(solarPanel)
+        currentOutput = (float(data[0]) - float(500)) / float(19)  * float(1000)
+
+        solarStorage.append(currentOutput)
         time.sleep(0.05)
 
     #Average Array
@@ -76,8 +78,7 @@ while True:
 #verbraucherLevel
 #Batterie_level
 #Solarpanel_level
-    data = measurePower(2)
-    currentOutput = (float(data[0]) - float(500)) / float(19)  * float(1000)
+
     print ("--------------------------------------------")
     #print("Verbraucher: ({}V)".format(averageVerbraucher))
     #print("Batterie   : ({}V)".format(averageBattery))
