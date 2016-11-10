@@ -121,6 +121,12 @@ var NRG = (function (NRG, $, undefined) {
 
 	window.onload = function(){
 
+		Chart.defaults.global = {
+			animationSteps : 0,
+			scaleLineColor : 'black',
+			scaleFontSize : 16
+		};
+
 		setInterval(function()  {
 
 			var lineChartData = {
