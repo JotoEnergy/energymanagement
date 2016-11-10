@@ -28,7 +28,7 @@ def convertVolt (input1):
 
 def convertCurrent (data):
 
-    return round(((data - 500) / 19), 3)
+    return (data - 500) / 19
 
 
 #Give SPI Channel and receive Array: [0] - Bits [1] - Volt, [2] - Current
@@ -77,7 +77,7 @@ while True:
     print ("--------------------------------------------")
     #print("Verbraucher: ({}V)".format(averageVerbraucher))
     #print("Batterie   : ({}V)".format(averageBattery))
-    print("Solarpanel : Bits {} | {}V | {}A".format(data[0],round(data[1], 3), data[2]))
+    print("Solarpanel : Bits {} | {}V | {}A".format(data[0],round(data[1], 3), ((data[0] - 500) / 19 ) ))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
     time.sleep(0.5)
