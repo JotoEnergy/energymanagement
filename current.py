@@ -71,15 +71,15 @@ while True:
 
         solarData = measurePower(2)
         solarOutput = (float(solarData[0]) - float(500)) / float(19)  * float(1000)
-        solarOutput = float(solarOutput) + float(setOffset(offset[0]))
+        solarOutput = setOffset(float(solarOutput), float(offset[0]))
 
         batteryData = measurePower(1)
         batteryOutput = (float(batteryData[0]) - float(500)) / float(19)  * float(1000)
-        batteryOutput = float(batteryOutput) + float(setOffset(offset[1]))
+        batteryOutput =  setOffset(float(batteryOutput), float(offset[1]))
 
         verbraucherData = measurePower(0)
         verbraucherOutput = (float(verbraucherData[0]) - float(500)) / float(19)  * float(1000)
-        verbraucherOutput = float(verbraucherOutput) + float(setOffset(offset[2]))
+        verbraucherOutput = setOffset(float(verbraucherOutput), float(offset[2]))
 
         solarStorage.append(solarOutput)
         batteryStorage.append(batteryOutput)
