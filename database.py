@@ -13,8 +13,10 @@ cursor = db.cursor()
 
 now = time.time()
 device = "Verbraucher"
+power = 10
+volt = 1.5
 # Use all the SQL you like
-cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES (%%s, %%s, %%s, %%s)" % (now, 10, 1.5, device) )
+cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES ({}, {}, {}, {})".format(now, power, volt, device) )
 
 try:
     # Execute the SQL command
