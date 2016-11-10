@@ -31,13 +31,13 @@ def convertCurrent (data):
     return round(((data - 500) / 19), 3)
 
 
-#Give SPI Channel and receive Array: [0] - Volt, [1] - Current
+#Give SPI Channel and receive Array: [0] - Bits [1] - Volt, [2] - Current
 def measurePower (channel):
     bitData = readChannel(channel)
     volt = convertVolt(bitData)
     current = convertCurrent(bitData)
 
-    return [volt, current]
+    return [bits, volt, current]
 
 
 
@@ -77,7 +77,7 @@ while True:
     print ("--------------------------------------------")
     #print("Verbraucher: ({}V)".format(averageVerbraucher))
     #print("Batterie   : ({}V)".format(averageBattery))
-    print("Solarpanel : {}V | {}A".format(round(data[0], 3), data[1]))
+    print("Solarpanel : Bits {} | {}V | {}A".format(data[0],round(data[1], 3), data[2]))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
     time.sleep(0.5)
