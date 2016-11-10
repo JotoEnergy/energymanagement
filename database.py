@@ -13,7 +13,7 @@ cur = db.cursor()
 
 now = datetime.datetime.now()
 # Use all the SQL you like
-cur.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES (%s, %s, %s, %s, %s)", (now, 10, 1.5, 'Verbraucher'))
+cur.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES (%s, %s, %s, %s)", (now, 10, 1.5, 'Verbraucher'))
 
 # print all the first cell of all the rows
 
