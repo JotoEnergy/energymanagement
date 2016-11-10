@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import MySQLdb
-import datetime
+import time
 
 db = MySQLdb.connect(host="localhost",    # your host, usually localhost
                      user="root",         # your username
@@ -11,7 +11,7 @@ db = MySQLdb.connect(host="localhost",    # your host, usually localhost
 #  you execute all the queries you need
 cursor = db.cursor()
 
-now = datetime.datetime.now()
+now = time.time()
 # Use all the SQL you like
 cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES (%s, %s, %s, %s)" % (now, 10, 1.5, 'Verbraucher') )
 
