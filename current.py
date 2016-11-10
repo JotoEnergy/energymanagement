@@ -11,7 +11,7 @@ spi = spidev.SpiDev()
 spi.open(0, 0)
 
 # Offset 1) Solar 2) Battery 3) Verbraucher
-offset = [300, 0, 500]
+offset = [300, 0, 550]
 
 # Function to read SPI data from MCP3008 chip
 # Channel must be an integer 0-7
