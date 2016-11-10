@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/JotoEnergy/energymanagement/issues"
   },
-  "homepage": "https://github.com/JotoEnergy/energymanagement#readme"
+  "homepage": "https://github.com/JotoEnergy/energymanagement#readme",
+  "dependencies": {
+    "python-shell": "^0.4.0"
+  }
 }
