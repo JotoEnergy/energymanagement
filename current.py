@@ -144,7 +144,7 @@ while True:
     print("Solarpanel : Bits {} | {}V | {}mA | {}W".format(solarData[0],round(solarData[1], 3), round(averageSolar), round(averageSolarWatt)))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
-    cursor = db.cursor()
+    #cursor = db.cursor()
     device = "Verbraucher"
     try:
         # Execute the SQL command
@@ -155,7 +155,7 @@ while True:
         # Rollback in case there is any error
         db.rollback()
 
-    db.close()
+    #db.close()
 
 
 
