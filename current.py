@@ -99,7 +99,7 @@ while True:
 
     print ("--------------------------------------------")
     print("Verbraucher: Bits {} | {}V | {}mA".format(verbraucherData[0],round(verbraucherData[1], 3), averageVerbraucher))
-    print("Batterie   : Bits {} | {}V | {}mA".format(batteryData[0],round(batteryData[1], 3), averageBattery))
+    #print("Batterie   : Bits {} | {}V | {}mA".format(batteryData[0],round(batteryData[1], 3), averageBattery))
     print("Solarpanel : Bits {} | {}V | {}mA".format(solarData[0],round(solarData[1], 3), averageSolar))
     #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
