@@ -13,7 +13,7 @@ cursor = db.cursor()
 
 now = datetime.datetime.now()
 # Use all the SQL you like
-cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES (%s, %s, %s, %s)" % \ (now, 10, 1.5, 'Verbraucher'))
+cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES (%s, %s, %s, %s)" % (now, 10, 1.5, 'Verbraucher') )
 
 try:
     # Execute the SQL command
