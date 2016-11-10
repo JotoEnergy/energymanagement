@@ -141,7 +141,7 @@ verbraucherPrice = (float(averageVerbraucherWatt) / float(1000)) * float(0.25)
 #Batterie_level
 #Solarpanel_level
 
-averageVerbraucherWatt = averageVerbraucherWatt * (-1)
+#averageVerbraucherWatt = averageVerbraucherWatt * (-1)
 print ("--------------------------------------------")
 print("Verbraucher: Bits {} | {}V | {}mA | {}W | Preis {} Euro pro h".format(verbraucherData[0],round(verbraucherData[1], 3), round(averageVerbraucher), round(averageVerbraucherWatt), verbraucherPrice))
 #print("Batterie   : Bits {} | {}V | {}mA".format(batteryData[0],round(batteryData[1], 3), averageBattery))
