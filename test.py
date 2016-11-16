@@ -45,7 +45,7 @@ def errorRate(channel):
     averageBitrate = reduce(lambda x, y: x + y, channelBitRate) / len(channelBitRate)
     variance = 2048 - averageBitrate
     if(averageBitrate > 300):
-        return false
+        return 0
     else:
         return variance
 
@@ -57,7 +57,7 @@ def errorRate(channel):
 typeStorage = []
 for i in xrange(0, ports):
     offset = errorRate(i)
-    if offset == false:
+    if offset == 0:
         data = 'Not available'
     else:
         data = readChannel(i) + offset
