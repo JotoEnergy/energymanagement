@@ -60,7 +60,7 @@ def errorRate(channel):
 while True:
     typeStorage = []
     for i in xrange(0, ports):
-        #offset = errorRate(i)
+        offset = errorRate(i)
         if offset == 0:
             data = 'N/A'
         else:
