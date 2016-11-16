@@ -12,6 +12,9 @@ def mysqlConnect ():
                          db="raspi")        # name of the data base
     return db
 
+#Ports
+ports = 3
+
 # Open SPI bus
 spi = spidev.SpiDev()
 spi.open(0, 0)
@@ -26,12 +29,32 @@ def readChannel(channel):
     data = ((adc[1]&15) << 8) + adc[2]
     return data
 
+#Read BitRate first 100 times to get an fixed error rate
+def errorRate(channel):
+    #aim BitRate
+    aimBitRate = 2048
+    channelBitRate = []
+    #Loop through the BitRate
+    for a in xrange(0,100):
+        #getChannelBits
+        getData = readChannel(channel)
+        channelBitRate.append(getData)
+        time.sleep(0.01)
+
+    #get Average of Data
+    averageBitrate = reduce(lambda x, y: x + y, channelBitRate) / len(channelBitRate)
+    variance = 2048 - averageBitrate
+    return variance
+
 
 while True:
     typeStorage = []
-    for i in xrange(0, 7):
-        data = readChannel(i)
-        typeStorage.append(data)
+    for i in xrange(0, ports):
+        offset = errorRate(channel)
+        #data = readChannel(i)
+        typeStorage.append(offset)
     print str(typeStorage)[1:-1]
 
-    time.sleep(0.01)
+
+
+    time.sleep(1)
