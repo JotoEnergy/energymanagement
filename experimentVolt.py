@@ -45,7 +45,7 @@ def errorRate(channel):
         #getChannelBits
         getData = readChannel(channel)
         channelBitRate.append(getData)
-        time.sleep(0.01)
+        time.sleep(0.005)
 
     #get Average of Data
     averageBitrate = reduce(lambda x, y: x + y, channelBitRate) / len(channelBitRate)
