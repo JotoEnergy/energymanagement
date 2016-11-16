@@ -58,7 +58,7 @@ while True:
     for i in xrange(0, ports):
         offset = errorRate(i)
         if offset == 0:
-            data = 'Not available'
+            data = 'N/A'
         else:
             data = readChannel(i) + offset
         typeStorage.append(data)
