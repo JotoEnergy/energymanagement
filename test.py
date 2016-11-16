@@ -29,6 +29,10 @@ def readChannel(channel):
     data = ((adc[1]&15) << 8) + adc[2]
     return data
 
+def convertVolt (input1):
+
+    return (input1 * 3.3) / float(4096)
+
 #Read BitRate first 100 times to get an fixed error rate
 def errorRate(channel):
     #aim BitRate
@@ -61,6 +65,10 @@ while True:
             data = 'N/A'
         else:
             data = readChannel(i) + offset
+
+        if i == 3:
+            data = convertVolt(data)
+
         typeStorage.append(data)
     print str(typeStorage)[1:-1]
     time.sleep(2)
