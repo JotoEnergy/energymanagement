@@ -29,8 +29,8 @@ offset = [300, 0, 550]
 # Function to read SPI data from MCP3008 chip
 # Channel must be an integer 0-7
 def readChannel(channel):
-    adc = spi.xfer2([1, (8 + channel) << 4, 0])
-    data = ((adc[1] & 3) << 10) + adc[2]
+    adc = spi.xfer2([1, (10 + channel) << 4, 0])
+    data = ((adc[1] & 3) << 8) + adc[2]
     return data
 
 # Function to convert data to voltage level,
