@@ -66,7 +66,7 @@ while True:
         else:
             #data = readChannel(i) + offset
             data = readChannel(i)
-        if i == 3 || i == 4:
+        if i == 3 or i == 4:
             data = convertVolt(data)
 
         typeStorage.append(data)
