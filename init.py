@@ -32,6 +32,6 @@ while True:
     for i in xrange(1, 8):
         data = readChannel(i)
         typeStorage.append(data)
-    print ', '.join(typeStorage)
+    print str(typeStorage)[1:-1]
 
     time.sleep(10)
