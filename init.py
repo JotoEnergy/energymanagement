@@ -35,7 +35,7 @@ def errorRate(channel):
     aimBitRate = 2048
     channelBitRate = []
     #Loop through the BitRate
-    for a in xrange(0,100):
+    for a in xrange(0,200):
         #getChannelBits
         getData = readChannel(channel)
         channelBitRate.append(getData)
