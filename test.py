@@ -44,7 +44,7 @@ def errorRate(channel):
     #get Average of Data
     averageBitrate = reduce(lambda x, y: x + y, channelBitRate) / len(channelBitRate)
     variance = 2048 - averageBitrate
-    if(averageBitrate > 300):
+    if(averageBitrate < 600):
         return 0
     else:
         return variance
