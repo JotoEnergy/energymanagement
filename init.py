@@ -50,7 +50,7 @@ def errorRate(channel):
 while True:
     typeStorage = []
     for i in xrange(0, ports):
-        offset = errorRate(channel)
+        offset = errorRate(i)
         #data = readChannel(i)
         typeStorage.append(offset)
     print str(typeStorage)[1:-1]
