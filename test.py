@@ -53,13 +53,14 @@ def errorRate(channel):
 
 
 
-
-typeStorage = []
-for i in xrange(0, ports):
-    offset = errorRate(i)
-    if offset == 0:
-        data = 'Not available'
-    else:
-        data = readChannel(i) + offset
-    typeStorage.append(data)
-print str(typeStorage)[1:-1]
+while True:
+    typeStorage = []
+    for i in xrange(0, ports):
+        offset = errorRate(i)
+        if offset == 0:
+            data = 'Not available'
+        else:
+            data = readChannel(i) + offset
+        typeStorage.append(data)
+    print str(typeStorage)[1:-1]
+    time.sleep(2)
