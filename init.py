@@ -51,8 +51,8 @@ while True:
     typeStorage = []
     for i in xrange(0, ports):
         offset = errorRate(i)
-        #data = readChannel(i)
-        typeStorage.append(offset)
+        data = readChannel(i) + offset
+        typeStorage.append(data)
     print str(typeStorage)[1:-1]
 
 
