@@ -79,7 +79,7 @@ verbraucherWattStorage = []
 batteryWattStorage = []
 solarWattStorage = []
 
-portStorage = []
+portStorage = [[], [], [], []]
 
 ports = 8
 
@@ -102,10 +102,10 @@ for i in xrange(0, ports):
         voltageArr.append(voltage)
         time.sleep(0.01)
 
-    currentAverage = reduce(lambda x, y: x + y, currentArr) / len(currentArr)
-    voltageAverage = reduce(lambda x, y: x + y, voltageArr) / len(voltageArr)
+    currentAverage = round(reduce(lambda x, y: x + y, currentArr) / len(currentArr), 5)
+    voltageAverage = round(reduce(lambda x, y: x + y, voltageArr) / len(voltageArr),5)
 
-    portStorage[i].append([currentAverage, voltageAverage])
+    portStorage[i].append([ float(currentAverage), float(voltageAverage)])
 
 
 #Average Array
