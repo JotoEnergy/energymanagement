@@ -87,7 +87,7 @@ for i in xrange(0, ports):
 
     #Take first channel for Ampere
     currentArr = []
-    for a in checkrange (0,50):
+    for a in xrange(0,50):
         bitData = readChannel(i)
         current = convertCurrent(bitData)
         currentArr.append(current)
@@ -96,7 +96,7 @@ for i in xrange(0, ports):
     i+=1
     #Take second Channel for Voltage
     voltageArr = []
-    for b in checkrange2 (0,50):
+    for b in xrange(0,50):
         bitData = readChannel(i)
         voltage = convertVolt(i)
         voltageArr.append(voltage)
