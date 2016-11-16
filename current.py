@@ -40,7 +40,7 @@ def readChannel(channel):
 # rounded to specified number of decimal places.
 def convertVolt (input1):
 
-    return (input1 * 3.3) / float(1024)
+    return (input1 * 3.3) / float(4096)
 
 #def newConvertVolt (input1, decimals):
 def convertCurrent (data):
