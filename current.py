@@ -3,6 +3,7 @@ import spidev
 import time
 import os
 import MySQLdb
+import numpy
 
 def mysqlConnect ():
 
@@ -72,7 +73,7 @@ def convertPower(volt, ampere):
 now = int(round(time.time()))
 
 
-portStorage = []
+portStorage = numpy.ndarray((8,1)
 
 ports = 8
 
@@ -90,7 +91,7 @@ for i in xrange(0, ports):
     currentAverage = round(reduce(lambda x, y: x + y, currentArr) / len(currentArr), 5)
     portStorage[i].append()
 
-    
+
     #Increase channel
     i+=1
     portStorage[i] = []
