@@ -9,7 +9,7 @@ spi.open(0, 0)
 # Function to read SPI data from MCP3008 chip
 # Channel must be an integer 0-7
 def readChannel(channel):
-    adc = spi.xfer2([1, (8py + channel) << 4, 0])
+    adc = spi.xfer2([1, (8 + channel) << 4, 0])
 
     print("adc: ".format(adc)
 
