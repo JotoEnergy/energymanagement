@@ -29,7 +29,7 @@ def readChannel(channel):
 
 while True:
     typeStorage = []
-    for i in xrange(1, 8):
+    for i in xrange(0, 7):
         data = readChannel(i)
         typeStorage.append(data)
     print str(typeStorage)[1:-1]
