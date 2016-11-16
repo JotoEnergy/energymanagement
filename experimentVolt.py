@@ -60,13 +60,13 @@ def errorRate(channel):
 while True:
     typeStorage = []
     for i in xrange(0, ports):
-        offset = errorRate(i)
+        #offset = errorRate(i)
         if offset == 0:
             data = 'N/A'
         else:
-            data = readChannel(i) + offset
-
-        if i == 3:
+            #data = readChannel(i) + offset
+            data = readChannel(i)
+        if i == 3 || i == 4:
             data = convertVolt(data)
 
         typeStorage.append(data)

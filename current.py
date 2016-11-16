@@ -45,7 +45,7 @@ def convertVolt (input1):
 #def newConvertVolt (input1, decimals):
 def convertCurrent (data):
 
-    return (data - 500) / 19
+    return (data - 2048) / 19
 
 
 #Give SPI Channel and receive Array: [0] - Bits [1] - Volt, [2] - Current
