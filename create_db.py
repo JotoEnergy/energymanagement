@@ -13,7 +13,7 @@ cursor = db.cursor()
 
 try:
     # Execute the SQL command
-    cursor.execute("CREATE TABLE devices( ID int(5), deviceName varchar(255), bitOffset varchar(10), channel varchar(3), sensorType varchar(3) );")
+    cursor.execute("CREATE TABLE devices( ID int(5) UNSIGNED NOT NULL AUTO_INCREMENT, deviceName varchar(255), bitOffset varchar(10), channel varchar(3), sensorType varchar(3) );")
     result = cursor.fetchall()
     print result[0]
     # Commit your changes in the database

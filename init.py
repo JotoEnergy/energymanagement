@@ -47,14 +47,25 @@ def errorRate(channel):
     return variance
 
 
-while True:
-    typeStorage = []
-    for i in xrange(0, ports):
-        offset = errorRate(i)
-        data = readChannel(i) + offset
-        typeStorage.append(data)
+
+typeStorage = []
+for i in xrange(0, ports):
+    offset = errorRate(i)
+    data = readChannel(i) + offset
+    typeStorage.append(data)
+
+    db = mysqlConnect()
+    cursor = db.cursor()
+
+    try:
+        # Execute the SQL command
+        cursor.execute("INSERT INTO devices (bitOffset, channel, sensorType) VALUES ('{}', '{}', '{}', '{}')".format(averageVerbraucherWatt, round(verbraucherData[1], 3), device) )
+        # Commit your changes in the database
+        db.commit()
+    except:
+        # Rollback in case there is any error
+        db.rollback()
+
+    db.close()
+    print('Setup Channel {} - Offset: {} - sensorType')
     print str(typeStorage)[1:-1]
-
-
-
-    time.sleep(1)
