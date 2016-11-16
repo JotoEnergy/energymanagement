@@ -29,5 +29,7 @@ def readChannel(channel):
 
 while True:
     for i in xrange(1, 8):
-    data = readChannel(i)
-    print(data)
+        data = readChannel(i)
+        print(data)
+
+    time.sleep(20)
