@@ -13,7 +13,7 @@ def mysqlConnect ():
     return db
 
 #Ports
-ports = 5
+ports = 8
 
 # Open SPI bus
 spi = spidev.SpiDev()
