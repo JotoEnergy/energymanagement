@@ -31,7 +31,9 @@ def readChannel(channel):
 
 def convertVolt (input1):
 
-    return (input1 * 3.3) / float(4096)
+    voltage = (input1 * 3.3) / float(4096)
+    linearVoltage = voltage * 7.3
+    return linearVoltage
 
 
 
