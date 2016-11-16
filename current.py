@@ -71,13 +71,6 @@ def convertPower(volt, ampere):
 
 now = int(round(time.time()))
 
-verbraucherStorage = []
-batteryStorage = []
-solarStorage = []
-
-verbraucherWattStorage = []
-batteryWattStorage = []
-solarWattStorage = []
 
 portStorage = []
 
@@ -93,6 +86,11 @@ for i in xrange(0, ports):
         current = convertCurrent(bitData)
         currentArr.append(current)
         time.sleep(0.01)
+
+    currentAverage = round(reduce(lambda x, y: x + y, currentArr) / len(currentArr), 5)
+    portStorage[i].append()
+
+    
     #Increase channel
     i+=1
     portStorage[i] = []
@@ -104,9 +102,7 @@ for i in xrange(0, ports):
         voltageArr.append(voltage)
         time.sleep(0.01)
 
-    currentAverage = round(reduce(lambda x, y: x + y, currentArr) / len(currentArr), 5)
     voltageAverage = round(reduce(lambda x, y: x + y, voltageArr) / len(voltageArr),5)
-
     portStorage[i].append()
 
 
