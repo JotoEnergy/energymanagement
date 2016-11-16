@@ -143,9 +143,9 @@ verbraucherPrice = (float(averageVerbraucherWatt) / float(1000)) * float(0.25)
 
 #averageVerbraucherWatt = averageVerbraucherWatt * (-1)
 print ("--------------------------------------------")
-print("Verbraucher: Bits {} | {}V | {}mA | {}W | Preis {} Euro pro h".format(verbraucherData[0],round(verbraucherData[1], 3), round(averageVerbraucher), round(averageVerbraucherWatt), verbraucherPrice))
+print("Verbraucher: Bits {} | {}V | {}mA | {}W | Preis {} Euro pro h".format(verbraucherData[0],round(verbraucherData[1], 2), round(averageVerbraucher), round(averageVerbraucherWatt), verbraucherPrice))
 #print("Batterie   : Bits {} | {}V | {}mA".format(batteryData[0],round(batteryData[1], 3), averageBattery))
-print("Solarpanel : Bits {} | {}V | {}mA | {}W".format(solarData[0],round(solarData[1], 3), round(averageSolar), round(averageSolarWatt)))
+print("Solarpanel : Bits {} | {}V | {}mA | {}W".format(solarData[0],round(solarData[1], 2), round(averageSolar), round(averageSolarWatt)))
 #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
 db = mysqlConnect()
