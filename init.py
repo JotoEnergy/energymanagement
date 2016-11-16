@@ -28,8 +28,10 @@ def readChannel(channel):
 
 
 while True:
+    typeStorage = []
     for i in xrange(1, 8):
         data = readChannel(i)
-        print(data)
+        typeStorage.append(data)
+    print ', '.join(typeStorage)
 
-    time.sleep(20)
+    time.sleep(10)
