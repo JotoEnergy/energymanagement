@@ -73,7 +73,7 @@ def convertPower(volt, ampere):
 now = int(round(time.time()))
 
 
-portStorage = numpy.ndarray((8,1)
+portStorage = numpy.ndarray((8,1))
 
 ports = 8
 
