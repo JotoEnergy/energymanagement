@@ -34,4 +34,4 @@ while True:
         typeStorage.append(data)
     print str(typeStorage)[1:-1]
 
-    time.sleep(10)
+    time.sleep(1)
