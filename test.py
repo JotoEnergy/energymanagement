@@ -14,6 +14,7 @@ def readChannel(channel):
     print("adc 1: ".format(adc[1]))
     print("adc 2: ".format(adc[2]))
     data = ((adc[1] & 3) << 8) + adc[2]
+    print("data: ".format(data))
     return data
 
 while True:
