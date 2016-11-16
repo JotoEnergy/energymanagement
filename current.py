@@ -40,9 +40,10 @@ def readChannel(channel):
 # rounded to specified number of decimal places.
 def convertVolt (input1):
 
-    return (input1 * 3.3) / float(4096)
+    voltage = (input1 * 3.3) / float(4096)
+    linearVoltage = voltage * 7.08
+    return linearVoltage
 
-#def newConvertVolt (input1, decimals):
 def convertCurrent (data):
 
     return (data - 2048) / 19
@@ -78,63 +79,48 @@ verbraucherWattStorage = []
 batteryWattStorage = []
 solarWattStorage = []
 
-for i in xrange(1, 50):
+portStorage = []
 
-    #Convert to Volts
-    #verbraucherVolts = convertVolt(readChannel(0))
-    #batteryVolts = convertVolt(readChannel(1))
-    #solarVolts = convertVolt(readChannel(2))
+ports = 8
 
-    #Read Bitdata and linear function
+for i in xrange(0, ports):
 
+    #Take first channel for Ampere
+    currentArr = []
+    for a in checkrange (0,50):
+        bitData = readChannel(i)
+        current = convertCurrent(bitData)
+        currentArr.append(current)
+        time.sleep(0.01)
+    #Increase channel
+    i+=1
+    #Take second Channel for Voltage
+    voltageArr = []
+    for b in checkrange2 (0,50):
+        bitData = readChannel(i)
+        voltage = convertVolt(i)
+        voltageArr.append(voltage)
+        time.sleep(0.01)
 
-    #Write to array and create average
-    #verbraucherStorage.append(verbraucherVolts)
-    #batteryStorage.append(batteryVolts)
+    currentAverage = reduce(lambda x, y: x + y, currentArr) / len(currentArr)
+    voltageAverage = reduce(lambda x, y: x + y, voltageArr) / len(voltageArr)
 
-    #Measure Power (Bits - Volt - Current) - input SPI Channel
-    solarData = measurePower(2)
-    #Get Bits and use linear algebra to find floating around 0
-    solarOutput = (float(solarData[0]) - float(500)) / float(19)  * float(1000)
-    #Set Offset
-    solarOutput = setOffset(float(solarOutput), float(offset[0]))
-    #miliAmpere * miliWatt (12500 hardcoded)
-    solarWatt = convertPower(12500, solarOutput)
+    portStorage[i].append([currentAverage, voltageAverage])
 
-    #Measure Power (Bits - Volt - Current) - input SPI Channel
-    batteryData = measurePower(1)
-    batteryOutput = (float(batteryData[0]) - float(500)) / float(19)  * float(1000)
-    batteryOutput =  setOffset(float(batteryOutput), float(offset[1]))
-    batteryWatt = convertPower(12500, batteryOutput)
-
-    #Measure Power (Bits - Volt - Current) - input SPI Channel
-    verbraucherData = measurePower(0)
-    verbraucherOutput = (float(verbraucherData[0]) - float(500)) / float(19)  * float(1000)
-    verbraucherOutput = setOffset(float(verbraucherOutput), float(offset[2]))
-    verbraucherWatt = convertPower(12500, verbraucherOutput)
-
-    #Store in Array to create average of 100 calls
-    solarStorage.append(solarOutput)
-    batteryStorage.append(batteryOutput)
-    verbraucherStorage.append(verbraucherOutput)
-
-    verbraucherWattStorage.append(verbraucherWatt)
-    batteryWattStorage.append(batteryWatt)
-    solarWattStorage.append(solarWatt)
-    time.sleep(0.1)
 
 #Average Array
-averageVerbraucher = round(reduce(lambda x, y: x + y, verbraucherStorage) / len(verbraucherStorage),3)
-averageBattery = round(reduce(lambda x, y: x + y, batteryStorage) / len(batteryStorage),3)
-averageSolar = reduce(lambda x, y: x + y, solarStorage) / len(solarStorage)
 
-averageVerbraucherWatt = round(reduce(lambda x, y: x + y, verbraucherWattStorage) / len(verbraucherWattStorage),3)
-averageBatteryWatt = round(reduce(lambda x, y: x + y, batteryWattStorage) / len(batteryWattStorage),3)
-averageSolarWatt = reduce(lambda x, y: x + y, solarWattStorage) / len(solarWattStorage)
+#averageSolar = reduce(lambda x, y: x + y, solarStorage) / len(solarStorage)
+
+#averageVerbraucherWatt = round(reduce(lambda x, y: x + y, verbraucherWattStorage) / len(verbraucherWattStorage),3)
+#averageBatteryWatt = round(reduce(lambda x, y: x + y, batteryWattStorage) / len(batteryWattStorage),3)
+#averageSolarWatt = reduce(lambda x, y: x + y, solarWattStorage) / len(solarWattStorage)
 
 verbraucherPrice = (float(averageVerbraucherWatt) / float(1000)) * float(0.25)
 
 
+print('\n'.join([''.join(['{:4}'.format(item) for item in row])
+                 for row in portStorage]))
 # Print out results
 
 #verbraucherLevel
@@ -142,25 +128,25 @@ verbraucherPrice = (float(averageVerbraucherWatt) / float(1000)) * float(0.25)
 #Solarpanel_level
 
 #averageVerbraucherWatt = averageVerbraucherWatt * (-1)
-print ("--------------------------------------------")
-print("Verbraucher: Bits {} | {}V | {}mA | {}W | Preis {} Euro pro h".format(verbraucherData[0],round(verbraucherData[1], 2), round(averageVerbraucher), round(averageVerbraucherWatt), verbraucherPrice))
+#print ("--------------------------------------------")
+#print("Verbraucher: Bits {} | {}V | {}mA | {}W | Preis {} Euro pro h".format(verbraucherData[0],round(verbraucherData[1], 2), round(averageVerbraucher), round(averageVerbraucherWatt), verbraucherPrice))
 #print("Batterie   : Bits {} | {}V | {}mA".format(batteryData[0],round(batteryData[1], 3), averageBattery))
-print("Solarpanel : Bits {} | {}V | {}mA | {}W".format(solarData[0],round(solarData[1], 2), round(averageSolar), round(averageSolarWatt)))
+#print("Solarpanel : Bits {} | {}V | {}mA | {}W".format(solarData[0],round(solarData[1], 2), round(averageSolar), round(averageSolarWatt)))
 #print("Temp : {} ({}V) {} deg C".format(temp_level, temp_volts, temp))
 
-db = mysqlConnect()
-cursor = db.cursor()
-device = "Verbraucher"
-try:
+#db = mysqlConnect()
+#cursor = db.cursor()
+#device = "Verbraucher"
+#try:
     # Execute the SQL command
-    cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES ('{}', '{}', '{}', '{}')".format(now, averageVerbraucherWatt, round(verbraucherData[1], 3), device) )
+    #cursor.execute("INSERT INTO powerSensor (datum, power, volt, device) VALUES ('{}', '{}', '{}', '{}')".format(now, averageVerbraucherWatt, round(verbraucherData[1], 3), device) )
     # Commit your changes in the database
-    db.commit()
-except:
+    #db.commit()
+#except:
     # Rollback in case there is any error
-    db.rollback()
+    #db.rollback()
 
-db.close()
+#db.close()
 
 
 
