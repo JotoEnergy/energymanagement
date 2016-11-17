@@ -40,27 +40,11 @@ io.on('connection', function (socket) {
     //Start first GUI Update
     var connection = createMysqlConnection();
     connection.connect();
-    connection.query('select distinct device from powerSensor' , function(err, rows, fields) {
-        if (err) throw err;
-
-        var devices = rows;
-        for (var i = 0; i < rows.length; i++) {
-            var connection = createMysqlConnection();
-            connection.connect();
-            console.log(rows[i].device);
-
-             connection.query('SELECT * FROM powerSensor WHERE device = ? LIMIT 1', [rows[i].device] , function(err2, rows2, fields2) {
-
-                 devices[i] = rows2;
-                 connection.end();
-
-             });
-        }
+    connection.query('SELECT * FROM powerSensor LIMIT 4' , function(err, rows, fields) {
 
 
         console.log(rows);
-        console.log(rows2);
-        socket.emit('updates', { data: rows, devices: devices });
+        socket.emit('updates', { data: rows });
         connection.end();
     });
 
@@ -71,29 +55,13 @@ io.on('connection', function (socket) {
         //Start first GUI Update
         var connection = createMysqlConnection();
         connection.connect();
-        connection.query('select distinct device from powerSensor' , function(err, rows, fields) {
-            if (err) throw err;
-
-            var devices = rows;
-            for (var i = 0; i < rows.length; i++) {
-                var connection = createMysqlConnection();
-                connection.connect();
-                console.log(rows[i].device);
-
-                connection.query('SELECT * FROM powerSensor WHERE device = ? LIMIT 1', [rows[i].device], function (err2, rows2, fields2) {
-
-                    devices[i] = rows2;
-                    connection.end();
-
-                });
-            }
+        connection.query('SELECT * FROM powerSensor LIMIT 4' , function(err, rows, fields) {
 
 
             console.log(rows);
-            console.log(rows2);
-            socket.emit('updates', {data: rows, devices: devices});
+            socket.emit('updates', { data: rows});
             connection.end();
-        })
+        });
 
     }, 5000);
 
