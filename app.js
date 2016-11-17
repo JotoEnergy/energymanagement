@@ -40,8 +40,20 @@ io.on('connection', function (socket) {
     //Start first GUI Update
     var connection = createMysqlConnection();
     connection.connect();
-    connection.query('select * from powerSensor where device in (select distinct device from powerSensor order by device limit 1)' , function(err, rows, fields) {
+    connection.query('select distinct device from powerSensor' , function(err, rows, fields) {
         if (err) throw err;
+
+
+
+        rows.foreach(function(data) {
+            console.log(data)
+            /*
+            connection.query('SELECT * FROM powerSensor WHERE ', function(err2, rows2, fields2) {
+
+
+            });*/
+        });
+
 
         //console.log(rows);
         socket.emit('updates', { data: rows });
