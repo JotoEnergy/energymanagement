@@ -47,7 +47,7 @@ def convertVolt (input1):
 
 def convertCurrent (data):
 
-    return (data - 2048) / 19
+    return float((data - 2048) / 19)
 
 
 #Give SPI Channel and receive Array: [0] - Bits [1] - Volt, [2] - Current
@@ -83,7 +83,6 @@ for i in xrange(0, devices):
     for a in xrange(0,50):
         bitData = readChannel(channel)
         current = convertCurrent(bitData)
-        print(current)
         currentArr.append(current)
         time.sleep(0.01)
 
