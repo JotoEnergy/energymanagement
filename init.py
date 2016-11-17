@@ -71,7 +71,7 @@ for i in xrange(0, ports):
         db.rollback()
 
     db.close()
-    print('Setup Channel {} - Offset: {} - sensorType {] - deviceID {}'.format(indexChannel, offset, sensorType, deviceNumber))
-    print str(typeStorage)[1:-1]
+    #print('Setup Channel {} - Offset: {} - sensorType {] - deviceID {}'.format(indexChannel, offset, sensorType, deviceNumber))
+    #print str(typeStorage)[1:-1]
     indexChannel+=2
     deviceNumber+=1
