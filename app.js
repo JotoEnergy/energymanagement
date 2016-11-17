@@ -55,7 +55,8 @@ io.on('connection', function (socket) {
         }
 
 
-        //console.log(rows);
+        console.log(rows);
+        console.log(rows2);
         socket.emit('updates', { data: rows, devices: devices });
         connection.end();
     });
@@ -81,7 +82,8 @@ io.on('connection', function (socket) {
              }
 
 
-             //console.log(rows);
+             console.log(rows);
+             console.log(rows2);
              socket.emit('updates', {data: rows, devices: devices});
              connection.end();
          });
