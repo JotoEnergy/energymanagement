@@ -111,7 +111,7 @@ for i in xrange(0, devices):
     cursor = db.cursor()
     device+=1
 
-    print('Device {}, BitRate: {} - Power {} - Volt {} - Watt {}'.format(device, bitData, power, volt, watt))
+    print('Device {}, BitRate: {} - Power {} - Volt {} - Watt {}'.format(device, currentBitData, power, volt, watt))
 
     try:
     # Execute the SQL command
