@@ -72,10 +72,8 @@ def convertPower(volt, ampere):
 
 now = int(round(time.time()))
 
-
-portStorage = numpy.ndarray((8,1))
-
 ports = 8
+device = 0
 
 for i in xrange(0, ports):
 
@@ -89,12 +87,9 @@ for i in xrange(0, ports):
         time.sleep(0.01)
 
     currentAverage = round(reduce(lambda x, y: x + y, currentArr) / len(currentArr), 5)
-    portStorage[i].append()
-
 
     #Increase channel
     i+=1
-    portStorage[i] = []
     #Take second Channel for Voltage
     voltageArr = []
     for b in xrange(0,50):
@@ -103,8 +98,28 @@ for i in xrange(0, ports):
         voltageArr.append(voltage)
         time.sleep(0.01)
 
-    voltageAverage = round(reduce(lambda x, y: x + y, voltageArr) / len(voltageArr),5)
-    portStorage[i].append()
+    voltageAverage = round(reduce(lambda x, y: x + y, voltageArr) / len(voltageArr), 5)
+    power = currentAverage
+    volt = voltageAverage
+
+    watt = volt * power
+
+    db = mysqlConnect()
+    cursor = db.cursor()
+    device+=1
+    try:
+    # Execute the SQL command
+        cursor.execute("INSERT INTO powerSensor (datum, power, volt, watt, device) VALUES ('{}', '{}', '{}', '{}')".format(now, power, volt, watt, device) )
+    # Commit your changes in the database
+        db.commit()
+    except:
+    # Rollback in case there is any error
+        db.rollback()
+
+    db.close()
+
+
+
 
 
 #Average Array
@@ -115,11 +130,11 @@ for i in xrange(0, ports):
 #averageBatteryWatt = round(reduce(lambda x, y: x + y, batteryWattStorage) / len(batteryWattStorage),3)
 #averageSolarWatt = reduce(lambda x, y: x + y, solarWattStorage) / len(solarWattStorage)
 
-verbraucherPrice = (float(averageVerbraucherWatt) / float(1000)) * float(0.25)
+#verbraucherPrice = (float(averageVerbraucherWatt) / float(1000)) * float(0.25)
 
 
-print('\n'.join([''.join(['{:4}'.format(item) for item in row])
-                 for row in portStorage]))
+#print('\n'.join([''.join(['{:4}'.format(item) for item in row])
+#                 for row in portStorage]))
 # Print out results
 
 #verbraucherLevel
