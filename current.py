@@ -108,7 +108,7 @@ for i in xrange(0, ports):
     device+=1
     try:
     # Execute the SQL command
-        cursor.execute("INSERT INTO powerSensor (datum, power, volt, watt, device) VALUES ('{}', '{}', '{}', '{}')".format(now, power, volt, watt, device) )
+        cursor.execute("INSERT INTO powerSensor (datum, power, volt, watt, device) VALUES ('{}', '{}', '{}', '{}', '{}')".format(now, power, volt, watt, device) )
     # Commit your changes in the database
         db.commit()
     except:
