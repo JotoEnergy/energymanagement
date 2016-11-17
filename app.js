@@ -43,7 +43,7 @@ io.on('connection', function (socket) {
     connection.query('SELECT * FROM powerSensor ORDER BY id DESC LIMIT 4' , function(err, rows, fields) {
 
 
-        console.log(rows);
+        //console.log(rows);
         socket.emit('updates', { data: rows });
         connection.end();
     });
@@ -58,7 +58,7 @@ io.on('connection', function (socket) {
         connection.query('SELECT * FROM powerSensor ORDER BY id DESC LIMIT 4' , function(err, rows, fields) {
 
 
-            console.log(rows);
+            //console.log(rows);
             socket.emit('updates', { data: rows});
             connection.end();
         });
@@ -76,7 +76,7 @@ console.log('Express Server listening on: http://localhost:'+port);
 setInterval(function() {
     PythonShell.run('current.py', function (err, data) {
         if (err) throw err;
-        //console.log(data);
+        console.log(data);
         console.log('Data collected.')
     })
 }, 5000);

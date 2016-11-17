@@ -86,7 +86,10 @@ for i in xrange(0, devices):
         currentArr.append(current)
         time.sleep(0.01)
 
+    currentBitData = bitData
     currentAverage = round(reduce(lambda x, y: x + y, currentArr) / len(currentArr), 5)
+
+    print('Device {}, BitRate: {} - Power {} - Watt {}'.format(device, bitData, current, ))
 
     #Increase channel
     channel+=1
@@ -98,6 +101,8 @@ for i in xrange(0, devices):
         voltageArr.append(voltage)
         time.sleep(0.01)
 
+    voltBitData = bitData
+
     voltageAverage = round(reduce(lambda x, y: x + y, voltageArr) / len(voltageArr), 5)
     power = currentAverage
     volt = voltageAverage
@@ -107,6 +112,9 @@ for i in xrange(0, devices):
     db = mysqlConnect()
     cursor = db.cursor()
     device+=1
+
+    print('Device {}, BitRate: {} - Power {} - Volt {} - Watt {}'.format(device, bitData, volt, power))
+
     try:
     # Execute the SQL command
         cursor.execute("INSERT INTO powerSensor (datum, power, volt, watt, device) VALUES ('{}', '{}', '{}', '{}', '{}')".format(now, float(power), float(volt), float(watt), device) )
