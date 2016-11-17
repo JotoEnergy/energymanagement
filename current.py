@@ -83,6 +83,7 @@ for i in xrange(0, devices):
     for a in xrange(0,50):
         bitData = readChannel(channel)
         current = convertCurrent(bitData)
+        print(current)
         currentArr.append(current)
         time.sleep(0.01)
 
