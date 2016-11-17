@@ -78,7 +78,8 @@ def getOffsets():
     rows = cursor.fetchall()
 
     for row in rows:
-        offsetArr.append(row["bitOffset"])
+        mainoffset = row["bitOffset"]
+        offsetArr.append(mainoffset)
 
     db.close()
     print str(offsetArr)[1:-1]
