@@ -89,7 +89,8 @@ devices = 4
 device = 0
 channel = 0
 
-allOffsets = getOffsets()
+#allOffsets = getOffsets()
+getOfsets()
 
 for i in xrange(0, devices):
 
