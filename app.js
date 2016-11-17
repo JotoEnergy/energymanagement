@@ -80,7 +80,7 @@ io.on('connection', function (socket) {
                 connection.connect();
                 console.log(rows[i].device);
 
-                connection.query('SELECT * FROM powerSensor WHERE device = ? LIMIT 1', [rows[i].device] , function(err2, rows2, fields2) {
+                connection.query('SELECT * FROM powerSensor WHERE device = ? LIMIT 1', [rows[i].device], function (err2, rows2, fields2) {
 
                     devices[i] = rows2;
                     connection.end();
@@ -91,8 +91,9 @@ io.on('connection', function (socket) {
 
             console.log(rows);
             console.log(rows2);
-            socket.emit('updates', { data: rows, devices: devices });
+            socket.emit('updates', {data: rows, devices: devices});
             connection.end();
+        })
 
     }, 5000);
 
