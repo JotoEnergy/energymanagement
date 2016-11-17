@@ -43,16 +43,15 @@ io.on('connection', function (socket) {
     connection.query('select distinct device from powerSensor' , function(err, rows, fields) {
         if (err) throw err;
 
+        for (var i = 0; i < rows.length; i++) {
+            console.log(rows[i]);
 
-
-        rows.foreach(function(data) {
-            console.log(data)
             /*
-            connection.query('SELECT * FROM powerSensor WHERE ', function(err2, rows2, fields2) {
+             connection.query('SELECT * FROM powerSensor WHERE ', function(err2, rows2, fields2) {
 
 
-            });*/
-        });
+             });*/
+        }
 
 
         //console.log(rows);
