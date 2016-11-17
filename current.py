@@ -77,7 +77,6 @@ device = 0
 
 for i in xrange(0, ports):
 
-    portStorage[i] = []
     #Take first channel for Ampere
     currentArr = []
     for a in xrange(0,50):
