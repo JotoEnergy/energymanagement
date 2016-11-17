@@ -89,8 +89,6 @@ for i in xrange(0, devices):
     currentBitData = bitData
     currentAverage = round(reduce(lambda x, y: x + y, currentArr) / len(currentArr), 5)
 
-    print('Device {}, BitRate: {} - Power {} - Watt {}'.format(device, bitData, current, ))
-
     #Increase channel
     channel+=1
     #Take second Channel for Voltage
