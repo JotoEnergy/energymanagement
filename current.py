@@ -69,19 +69,31 @@ def convertPower(volt, ampere):
     return (float(volt)*float(ampere) / 1000) / 1000
 
 
+def getOffsets():
+    db = mysqlConnect()
+    cursor = db.cursor()
 
+    cursor.execute("SELECT * FROM devices")
+    rows = cursor
+
+    db.close()
+    return rows
 
 
 devices = 4
 device = 0
 channel = 0
 
+allOffsets = getOffsets()
+
 for i in xrange(0, devices):
 
     #Take first channel for Ampere
     currentArr = []
+    #Get current Offset
+    currentOffset = allOffsets[device]['bitOffset']
     for a in xrange(0,50):
-        bitData = readChannel(channel)
+        bitData = readChannel(channel) + currentOffset
         current = convertCurrent(bitData)
         currentArr.append(current)
         time.sleep(0.01)
@@ -123,7 +135,7 @@ for i in xrange(0, devices):
         db.rollback()
 
     db.close()
-
+    channel+=1
 
 
 
