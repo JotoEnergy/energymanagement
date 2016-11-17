@@ -74,7 +74,7 @@ def getOffsets():
     cursor = db.cursor()
 
     cursor.execute("SELECT * FROM devices")
-    rows = cursor.fetchAll()
+    rows = cursor.fetchall()
 
     db.close()
     return rows
