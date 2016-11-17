@@ -61,21 +61,30 @@ io.on('connection', function (socket) {
     });
 
 
-    /*
     //Update GUI in Intervals
     setInterval(function() {
 
-        var connection = createMysqlConnection();
-        connection.connect();
-        connection.query('SELECT * FROM powerSensor' , function(err, rows, fields) {
-            if (err) throw err;
+     var connection = createMysqlConnection();
+     connection.connect();
+     connection.query('select distinct device from powerSensor' , function(err, rows, fields) {
+         if (err) throw err;
 
-            //console.log(rows);
-            socket.emit('updates', { data: rows });
-            connection.end();
-        });
+         var devices = rows;
+         for (var i = 0; i < rows.length; i++) {
+         console.log(rows[i].device);
+
+         connection.query('SELECT * FROM powerSensor WHERE device = ? LIMIT 1', [rows[i].device] , function(err2, rows2, fields2) {
+
+            devices[i] = rows2;
+
+         });
+     }
+
+
+     //console.log(rows);
+     socket.emit('updates', { data: rows, devices: devices });
+     connection.end();
     }, 5000);
-    */
 
 
 });
