@@ -49,9 +49,12 @@ def errorRate(channel):
 
 
 typeStorage = []
+indexChannel = 0
+deviceNumber = 1
+sensorType = 'measureCurrent'
 for i in xrange(0, ports):
-    offset = errorRate(i)
-    data = readChannel(i) + offset
+    offset = errorRate(indexChannel)
+    data = readChannel(indexChannel) + offset
     typeStorage.append(data)
 
     db = mysqlConnect()
@@ -59,7 +62,7 @@ for i in xrange(0, ports):
 
     try:
         # Execute the SQL command
-        cursor.execute("INSERT INTO devices (bitOffset, channel, sensorType) VALUES ('{}', '{}', '{}', '{}')".format(averageVerbraucherWatt, round(verbraucherData[1], 3), device) )
+        cursor.execute("INSERT INTO devices (bitOffset, channel, sensorType, deviceID) VALUES ('{}', '{}', '{}', '{}')".format(offset, indexChannel, sensorType, deviceNumber) )
         # Commit your changes in the database
         db.commit()
     except:
@@ -67,5 +70,7 @@ for i in xrange(0, ports):
         db.rollback()
 
     db.close()
-    print('Setup Channel {} - Offset: {} - sensorType')
+    print('Setup Channel {} - Offset: {} - sensorType {] - deviceID {}'.format(indexChannel, offset, sensorType, deviceNumber))
     print str(typeStorage)[1:-1]
+    indexChannel+=2
+    deviceNumber+=1
