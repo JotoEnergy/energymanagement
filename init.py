@@ -48,10 +48,6 @@ def errorRate(channel):
 
 
 
-
-
-
-
 typeStorage = []
 indexChannel = 0
 deviceNumber = 1

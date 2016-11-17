@@ -11,7 +11,7 @@ var NRG = (function (NRG, $, undefined) {
         });
 
         NRG.socket.on('updates', function (data) {
-            //console.log(data);
+            console.log(data);
 
             var dataArray = data.data;
             var amountData = dataArray.length;
