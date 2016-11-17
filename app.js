@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
     //Start first GUI Update
     var connection = createMysqlConnection();
     connection.connect();
-    connection.query('SELECT * FROM powerSensor ORDER BY datum DESC LIMIT 1000' , function(err, rows, fields) {
+    connection.query('select * from powerSensor where device in (select distinct device from powerSensor order by device limit 1)' , function(err, rows, fields) {
         if (err) throw err;
 
         //console.log(rows);
@@ -49,6 +49,7 @@ io.on('connection', function (socket) {
     });
 
 
+    /*
     //Update GUI in Intervals
     setInterval(function() {
 
@@ -62,6 +63,7 @@ io.on('connection', function (socket) {
             connection.end();
         });
     }, 5000);
+    */
 
 
 });
@@ -74,6 +76,7 @@ console.log('Express Server listening on: http://localhost:'+port);
 setInterval(function() {
     PythonShell.run('current.py', function (err, data) {
         if (err) throw err;
-        console.log(data);
+        //console.log(data);
+        console.log('Data collected.')
     })
 }, 5000);
