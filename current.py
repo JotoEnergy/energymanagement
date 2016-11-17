@@ -72,15 +72,16 @@ def convertPower(volt, ampere):
 
 now = int(round(time.time()))
 
-ports = 8
+devices = 4
 device = 0
+channel = 0
 
-for i in xrange(0, ports):
+for i in xrange(0, devices):
 
     #Take first channel for Ampere
     currentArr = []
     for a in xrange(0,50):
-        bitData = readChannel(i)
+        bitData = readChannel(channel)
         current = convertCurrent(bitData)
         currentArr.append(current)
         time.sleep(0.01)
@@ -88,12 +89,12 @@ for i in xrange(0, ports):
     currentAverage = round(reduce(lambda x, y: x + y, currentArr) / len(currentArr), 5)
 
     #Increase channel
-    i+=1
+    channel+=1
     #Take second Channel for Voltage
     voltageArr = []
     for b in xrange(0,50):
-        bitData = readChannel(i)
-        voltage = convertVolt(i)
+        bitData = readChannel(channel)
+        voltage = convertVolt(bitData)
         voltageArr.append(voltage)
         time.sleep(0.01)
 
