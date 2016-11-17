@@ -102,7 +102,7 @@ for i in xrange(0, devices):
     power = currentAverage
     volt = voltageAverage
 
-    watt = volt * power
+    watt = convertPower(volt, power)
 
     db = mysqlConnect()
     cursor = db.cursor()
