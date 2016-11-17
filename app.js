@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
     //Start first GUI Update
     var connection = createMysqlConnection();
     connection.connect();
-    connection.query('SELECT * FROM powerSensor LIMIT 4' , function(err, rows, fields) {
+    connection.query('SELECT * FROM powerSensor LIMIT 4 ORDER BY datum DESC' , function(err, rows, fields) {
 
 
         console.log(rows);
@@ -55,7 +55,7 @@ io.on('connection', function (socket) {
         //Start first GUI Update
         var connection = createMysqlConnection();
         connection.connect();
-        connection.query('SELECT * FROM powerSensor LIMIT 4' , function(err, rows, fields) {
+        connection.query('SELECT * FROM powerSensor LIMIT 4 ORDER BY datum DESC' , function(err, rows, fields) {
 
 
             console.log(rows);
