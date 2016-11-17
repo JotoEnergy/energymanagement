@@ -59,10 +59,11 @@ for i in xrange(0, ports):
 
     db = mysqlConnect()
     cursor = db.cursor()
+    datum = int(round(time.time()))
 
     try:
         # Execute the SQL command
-        cursor.execute("INSERT INTO devices (bitOffset, channel, sensorType, deviceID) VALUES ('{}', '{}', '{}', '{}')".format(offset, indexChannel, sensorType, deviceNumber) )
+        cursor.execute("INSERT INTO devices (bitOffset, channel, sensorType, datum, deviceID) VALUES ('{}', '{}', '{}', '{}', '{}')".format(offset, indexChannel, sensorType, datum, deviceNumber) )
         # Commit your changes in the database
         db.commit()
     except:

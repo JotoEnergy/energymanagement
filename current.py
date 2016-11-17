@@ -70,7 +70,7 @@ def convertPower(volt, ampere):
 
 
 
-now = int(round(time.time()))
+
 
 devices = 4
 device = 0
@@ -112,7 +112,7 @@ for i in xrange(0, devices):
     device+=1
 
     print('Device {}, BitRate: {} - Power {} - Volt {} - Watt {}'.format(device, currentBitData, power, volt, watt))
-
+    now = int(round(time.time()))
     try:
     # Execute the SQL command
         cursor.execute("INSERT INTO powerSensor (datum, power, volt, watt, device) VALUES ('{}', '{}', '{}', '{}', '{}')".format(now, float(power), float(volt), float(watt), device) )
