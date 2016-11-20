@@ -87,13 +87,13 @@ $(document).ready(function() {
         });
 
         //console.log(updateRows);
-        var inputPower, outputPower;
+        var inputPower, outputPower = 0;
         var rows = '';
         $.each(updateRows, function(index, element) {
             var volt = new Decimal(element['volt']);
             var power = new Decimal(element['power']);
             var watt = new Decimal(element['watt']);
-            
+
             rows += '<tr><td>'+element['device']+'</td><td>'+volt+' V</td><td>'+power+' A</td><td>'+watt+' W</td></tr>';
 
             if(watt > 0) {
