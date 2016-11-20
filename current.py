@@ -79,7 +79,7 @@ def getOffsets():
 
     for x in xrange(0, numrows):
         row = cursor.fetchone()
-        offsetArr.append(row)
+        offsetArr.append(row[0])
 
     db.close()
     #print str(offsetArr)[1:-1]
@@ -97,7 +97,7 @@ for i in xrange(0, devices):
     #Take first channel for Ampere
     currentArr = []
     #Get current Offset
-    currentOffset = allOffsets[i][0]
+    currentOffset = allOffsets[i]
     for a in xrange(0,50):
         bitData = readChannel(channel) + currentOffset
         current = convertCurrent(bitData)
