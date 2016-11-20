@@ -105,8 +105,10 @@ $(document).ready(function() {
 
         });
 
-        $("#power_output").html(outputPower + ' W');
-        $("#total_incoming_power").html(inputPower + ' W');
+        var outputPowerDisplay = Math.round(outputPower * 100000) / 100000;
+        var inputPowerDisplay = Math.round(inputPower * 100000) / 100000;
+        $("#power_output").html(outputPowerDisplay + ' W');
+        $("#total_incoming_power").html(inputPowerDisplay + ' W');
 
         $("#deviceTable").html(rows);
 
