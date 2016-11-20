@@ -76,10 +76,10 @@ def getOffsets():
 
     cursor.execute("""SELECT bitOffset FROM devices""")
     numrows = cursor.rowcount
-    results = cursor.fetchall()
 
     for x in xrange(0, numrows):
-        offsetArr.append(rows[x])
+        row = cursor.fetchone()
+        offsetArr.append(row[x])
 
     db.close()
     print str(offsetArr)[1:-1]
