@@ -82,7 +82,7 @@ def getOffsets():
         offsetArr.append(row[0])
 
     db.close()
-    #print str(offsetArr)[1:-1]
+    print str(offsetArr)[1:-1]
     return offsetArr
 
 
@@ -99,7 +99,7 @@ for i in xrange(0, devices):
     #Get current Offset
     currentOffset = allOffsets[i]
     for a in xrange(0,50):
-        bitData = readChannel(channel) + currentOffset
+        bitData = readChannel(channel) + int(currentOffset)
         current = convertCurrent(bitData)
         currentArr.append(current)
         time.sleep(0.01)
