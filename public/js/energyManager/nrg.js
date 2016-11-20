@@ -90,7 +90,7 @@ $(document).ready(function() {
         var rows = '';
         $.each(updateRows, function(index, element) {
 
-            rows += '<tr><td>'+element['device']+'</td><td>'+element['volt']+'</td><td>'+element['power']+'</td><td>'+element['watt']+'</td></tr>'
+            rows += '<tr><td>'+element['device']+'</td><td>'+element['volt']+' V</td><td>'+element['power']+' A</td><td>'+element['watt']+' W</td></tr>'
 
         });
 
