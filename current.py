@@ -82,7 +82,7 @@ def getOffsets():
         offsetArr.append(row[0])
 
     db.close()
-    //Offset variables
+    #Offset variables
     #print str(offsetArr)[1:-1]
     return offsetArr
 
