@@ -82,7 +82,8 @@ def getOffsets():
         offsetArr.append(row[0])
 
     db.close()
-    print str(offsetArr)[1:-1]
+    //Offset variables
+    #print str(offsetArr)[1:-1]
     return offsetArr
 
 
@@ -129,7 +130,7 @@ for i in xrange(0, devices):
     cursor = db.cursor()
     device+=1
 
-    print('Device {}, BitRate: {} - Power {} - Volt {} - Watt {}'.format(device, currentBitData, power, volt, watt))
+    print('Device {}, BitRate: {} - Power {} - Volt {} - Watt {} | Offset: {}'.format(device, currentBitData, power, volt, watt, currentOffset))
     now = int(round(time.time()))
     try:
     # Execute the SQL command
