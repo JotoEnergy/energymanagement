@@ -82,7 +82,7 @@ def getOffsets():
         offsetArr.append(row)
 
     db.close()
-    print str(offsetArr)[1:-1]
+    #print str(offsetArr)[1:-1]
     return offsetArr
 
 
@@ -90,7 +90,6 @@ devices = 4
 device = 0
 channel = 0
 
-allOffsets = []
 allOffsets = getOffsets()
 
 for i in xrange(0, devices):
