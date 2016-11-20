@@ -86,7 +86,12 @@ $(document).ready(function() {
 
         });
 
-        console.log(updateRows);
+        //console.log(updateRows);
+
+        $.each(updateRows, function(index, elexement) {
+          console.log(index);
+            console.log(element);
+        });
 
     });
 
