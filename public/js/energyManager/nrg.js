@@ -65,6 +65,14 @@ var NRG = (function (NRG, $, undefined) {
 
 $(document).ready(function() {
 
-    NRG.init();
+    //NRG.init();
+
+    NRG.socket = io.connect();
+    NRG.socket.on('check', function (data) {
+        //console.log(data);
+        console.log('Socket connected');
+        NRG.socket.emit('established');
+    });
+
 
 });
