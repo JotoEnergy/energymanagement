@@ -87,11 +87,14 @@ $(document).ready(function() {
         });
 
         //console.log(updateRows);
+        var rows = '';
+        $.each(updateRows, function(index, element) {
 
-        $.each(updateRows, function(index, elexement) {
-          console.log(index);
-            console.log(element);
+            rows += '<tr><td>'+element['device']+'</td><td>'+element['volt']+'</td><td>'+element['power']+'</td><td>'+element['watt']+'</td></tr>'
+
         });
+
+        $("#deviceTable").html(rows);
 
     });
 
