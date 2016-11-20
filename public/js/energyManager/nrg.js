@@ -97,9 +97,9 @@ $(document).ready(function() {
             rows += '<tr><td>'+element['device']+'</td><td>'+volt+' V</td><td>'+power+' A</td><td>'+watt+' W</td></tr>';
 
             if(watt > 0) {
-                inputPower += watt;
+                inputPower += element['watt'];
             } else {
-                outputPower += watt;
+                outputPower += element['watt'];
             }
 
         });
