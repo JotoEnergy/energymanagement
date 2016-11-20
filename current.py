@@ -97,7 +97,7 @@ for i in xrange(0, devices):
     #Take first channel for Ampere
     currentArr = []
     #Get current Offset
-    currentOffset = allOffsets[i]
+    currentOffset = allOffsets[i][0]
     for a in xrange(0,50):
         bitData = readChannel(channel) + currentOffset
         current = convertCurrent(bitData)
