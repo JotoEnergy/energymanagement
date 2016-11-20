@@ -74,8 +74,9 @@ def getOffsets():
     db = mysqlConnect()
     cursor = db.cursor()
 
-    for row in cursor.execute("SELECT bitOffset FROM devices"):
-        bitOffset = row
+    for row in cursor.execute("SELECT id, bitOffset FROM devices"):
+        bitOffset, id = row
+        print(row)
         offsetArr.append(bitOffset)
 
     db.close()
