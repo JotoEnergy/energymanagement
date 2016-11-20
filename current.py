@@ -79,7 +79,7 @@ def getOffsets():
 
     for x in xrange(0, numrows):
         row = cursor.fetchone()
-        offsetArr.append(row[x])
+        offsetArr.append(row)
 
     db.close()
     print str(offsetArr)[1:-1]
