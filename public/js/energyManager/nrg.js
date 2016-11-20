@@ -74,5 +74,10 @@ $(document).ready(function() {
         NRG.socket.emit('established');
     });
 
+    NRG.socket.on('updates', function (data) {
+        console.log(data);
+
+    });
+
 
 });
