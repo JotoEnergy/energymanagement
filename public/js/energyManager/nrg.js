@@ -93,9 +93,20 @@ $(document).ready(function() {
             var power = new Decimal(element['power']);
             var watt = new Decimal(element['watt']);
 
-            rows += '<tr><td>'+element['device']+'</td><td>'+volt+' V</td><td>'+power+' A</td><td>'+watt+' W</td></tr>'
+            var inputPower, outputPower;
+
+            rows += '<tr><td>'+element['device']+'</td><td>'+volt+' V</td><td>'+power+' A</td><td>'+watt+' W</td></tr>';
+
+            if(watt > 0) {
+                inputPower += watt;
+            } else {
+                outputPower += watt;
+            }
 
         });
+
+        $("#power_output").html(outputPower + ' W');
+        $("#total_incoming_power").html(inputPower + ' W');
 
         $("#deviceTable").html(rows);
 
