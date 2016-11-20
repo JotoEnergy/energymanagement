@@ -75,7 +75,18 @@ $(document).ready(function() {
     });
 
     NRG.socket.on('updates', function (data) {
-        console.log(data);
+        //console.log(data);
+
+        var updateRows = data.data;
+
+        updateRows.sort(function(a,b) {
+
+            // assuming distance is always a valid integer
+            return a.device - b.device;
+
+        });
+
+        console.log(updateRows);
 
     });
 
