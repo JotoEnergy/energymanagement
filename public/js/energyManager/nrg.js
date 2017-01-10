@@ -83,7 +83,10 @@ $(document).ready(function() {
 
         $("#total_power_output").html(watt +' W');
 
-        console.log(data);
+        $("#total_volt_data").html(volt+ ' V');
+        $("#total_current_data").html(current+ ' A');
+
+        //console.log(data);
 
     });
 
