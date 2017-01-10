@@ -29,12 +29,7 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-var ampereAndVolt = i2c.readi2c(function(output) {
 
-    var logAmpereAndVolt = JSON.stringify(output);
-    console.log(logAmpereAndVolt);
-
-});
 
 
 io.on('connection', function (socket) {
@@ -44,6 +39,7 @@ io.on('connection', function (socket) {
     });
 
 
+    /*
     //Start first GUI Update
     var connection = createMysqlConnection();
     connection.connect();
@@ -54,7 +50,19 @@ io.on('connection', function (socket) {
         socket.emit('updates', { data: rows });
         connection.end();
     });
+    */
 
+    setInterval(function() {
+        var ampereAndVolt = i2c.readi2c(function(voltAndAmpere) {
+
+            var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
+            console.log(logAmpereAndVolt);
+
+
+            socket.emit('data', { data: voltAndAmpere });
+
+        });
+    }, 1000);
 
     //Update GUI in Intervals
     /*
