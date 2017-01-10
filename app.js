@@ -30,7 +30,8 @@ app.get('/', function(req, res) {
 });
 
 var ampereAndVolt = i2c.readi2c();
-console.log(ampereAndVolt);
+var logAmpereAndVolt = JSON.stringify(ampereAndVolt);
+console.log(logAmpereAndVolt);
 
 io.on('connection', function (socket) {
     socket.emit('check', { hello: 'world' });
