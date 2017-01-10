@@ -29,9 +29,13 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-var ampereAndVolt = i2c.readi2c();
-var logAmpereAndVolt = JSON.stringify(ampereAndVolt);
-console.log(logAmpereAndVolt);
+var ampereAndVolt = i2c.readi2c(function(output) {
+
+    var logAmpereAndVolt = JSON.stringify(output);
+    console.log(logAmpereAndVolt);
+
+});
+
 
 io.on('connection', function (socket) {
     socket.emit('check', { hello: 'world' });
