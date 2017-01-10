@@ -1,7 +1,7 @@
-var PythonShell = require('python-shell');
 var express = require('express');
 var path = require('path');
 var mysql      = require('mysql');
+var i2c = require('./i2c.js');
 
 function createMysqlConnection() {
 
@@ -48,8 +48,12 @@ io.on('connection', function (socket) {
         connection.end();
     });
 
+    var ampereAndVolt = i2c.readi2c();
+    console.log(ampereAndVolt);
+
 
     //Update GUI in Intervals
+    /*
     setInterval(function() {
 
         //Start first GUI Update
@@ -64,6 +68,7 @@ io.on('connection', function (socket) {
         });
 
     }, 5000);
+    */
 
 
 });
@@ -72,11 +77,7 @@ console.log('App started.');
 console.log('Express Server listening on: http://localhost:'+port);
 
 
-//Setup listening to Python script /S
+
 setInterval(function() {
-    PythonShell.run('current.py', function (err, data) {
-        if (err) throw err;
-        console.log(data);
-        console.log('Data collected.')
-    })
+
 }, 5000);
