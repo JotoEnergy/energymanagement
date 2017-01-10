@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var mysql      = require('mysql');
-var i2c = require('./i2c.js');
+var i2c = require('./i2c');
 
 function createMysqlConnection() {
 
@@ -50,7 +50,7 @@ io.on('connection', function (socket) {
         connection.end();
     });
 
-    
+
     //Update GUI in Intervals
     /*
     setInterval(function() {

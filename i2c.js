@@ -1,33 +1,30 @@
 var ina219 = require('ina219');
 
-var i2c = {};
+module.exports = {
+    readi2c: function () {
 
-i2c.readi2c = function () {
+        var ampereAndVolt = {};
+        ina219.init();
+        ina219.enableLogging(true);
 
-    var ampereAndVolt = {};
-    ina219.init();
-    ina219.enableLogging(true);
+        ina219.calibrate32V1A(function () {
 
-    ina219.calibrate32V1A(function () {
+            ina219.getBusVoltage_V(function (volts) {
 
-        ina219.getBusVoltage_V(function (volts) {
+                //console.log("Voltage: " + volts);
 
-            //console.log("Voltage: " + volts);
+                ina219.getCurrent_mA(function (current){
 
-            ina219.getCurrent_mA(function (current){
+                    ampereAndVolt = {volts: volts, current: current};
 
-                ampereAndVolt = {volts: volts, current: current};
+                    //console.log("Current (mA): " + current );
 
-                //console.log("Current (mA): " + current );
+                    return ampereAndVolt;
 
-                return ampereAndVolt;
+                });
 
             });
 
         });
-
-    });
-
+    }
 };
-
-return i2c;
