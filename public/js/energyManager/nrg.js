@@ -76,6 +76,9 @@ $(document).ready(function() {
 
     NRG.socket.on('data', function(data) {
 
+        var volt = data.data.volts;
+        var current = data.data.current / 1000;
+
         var watt = data.data.current * data.data.volts;
 
         $("#total_power_output").html(watt +' W');
