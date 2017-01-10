@@ -29,6 +29,8 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+var ampereAndVolt = i2c.readi2c();
+console.log(ampereAndVolt);
 
 io.on('connection', function (socket) {
     socket.emit('check', { hello: 'world' });
@@ -48,8 +50,7 @@ io.on('connection', function (socket) {
         connection.end();
     });
 
-    var ampereAndVolt = i2c.readi2c();
-    console.log(ampereAndVolt);
+
 
 
     //Update GUI in Intervals
