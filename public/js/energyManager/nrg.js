@@ -79,7 +79,7 @@ $(document).ready(function() {
         var volt = data.data.volts;
         var current = data.data.current / 1000;
 
-        var watt = data.data.current * data.data.volts;
+        var watt = current * volt;
 
         $("#total_power_output").html(watt +' W');
 
