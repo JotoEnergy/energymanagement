@@ -58,6 +58,14 @@ var NRG = (function (NRG, $, undefined) {
 
     };
 
+    NRG.formatOutputNumber = function (number) {
+
+        number = Math.floor(number * 1000) / 1000;
+
+        return Decimal(number);
+
+    };
+
 
     return NRG;
 }(NRG || {}, jQuery));
@@ -81,10 +89,9 @@ $(document).ready(function() {
 
         var watt = current * volt;
 
-        $("#total_power_output").html(watt +' W');
-
-        $("#total_volt_data").html(volt+ ' V');
-        $("#total_current_data").html(current+ ' A');
+        $("#total_power_output").html(NRG.formatOutputNumber(watt) +' W');
+        $("#total_volt_data").html(NRG.formatOutputNumber(volt)+ ' V');
+        $("#total_current_data").html(NRG.formatOutputNumber(current)+ ' A');
 
         //console.log(data);
 
