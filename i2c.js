@@ -15,10 +15,14 @@ module.exports = {
                 ina219.getCurrent_mA(function (current){
                     console.log("Current (mA): " + current );
 
-                    return {
+                    var voltAndAmpere = {
                         volts: volts,
                         current: current
                     };
+
+                    console.log(JSON.stringify(voltAndAmpere));
+
+                    return voltAndAmpere;
 
                 });
 
