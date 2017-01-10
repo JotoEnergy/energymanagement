@@ -1,18 +1,14 @@
 var ina219 = require('ina219');
 
-function readi2c () {
+var i2c = {};
 
+i2c.readi2c = function () {
 
     var ampereAndVolt = {};
     ina219.init();
-
     ina219.enableLogging(true);
 
-
-
     ina219.calibrate32V1A(function () {
-
-
 
         ina219.getBusVoltage_V(function (volts) {
 
@@ -32,5 +28,6 @@ function readi2c () {
 
     });
 
-}
+};
 
+return i2c;

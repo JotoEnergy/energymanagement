@@ -50,9 +50,7 @@ io.on('connection', function (socket) {
         connection.end();
     });
 
-
-
-
+    
     //Update GUI in Intervals
     /*
     setInterval(function() {
