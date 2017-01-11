@@ -1,9 +1,9 @@
 var ina219 = require('ina219');
 
 module.exports = {
-    readi2c: function (callback) {
+    readi2c: function (address, callback) {
 
-        ina219.init();
+        ina219.init(address);
         ina219.enableLogging(true);
 
         ina219.calibrate32V1A(function () {

@@ -26,7 +26,9 @@ io.on('connection', function (socket) {
     });
 
     setInterval(function() {
-        var ampereAndVolt = i2c.readi2c(function(voltAndAmpere) {
+
+        var address = 0x41;
+        var ampereAndVolt = i2c.readi2c(address, function(voltAndAmpere) {
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
             console.log(logAmpereAndVolt);
