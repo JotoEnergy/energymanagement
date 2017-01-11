@@ -18,7 +18,7 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-var address = [ 0x40, 0x41, 0x44, 0x45 ];
+var address = '';
 
 io.on('connection', function (socket) {
 
@@ -29,9 +29,9 @@ io.on('connection', function (socket) {
 
     setInterval(function() {
 
-        _.each(address, function(i2cAddress) {
+        _.each([ 0x40, 0x41, 0x44, 0x45 ], function(i2cAddress) {
 
-            console.log('Address'+i2cAddress);
+            console.log('Address: '+i2cAddress);
 
             var ampereAndVolt = i2c.readi2c(i2cAddress, function(voltAndAmpere) {
 
