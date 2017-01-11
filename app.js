@@ -2,21 +2,23 @@ var express = require('express');
 var path = require('path');
 var mysql      = require('mysql');
 var i2c = require('./i2c');
+var _ = require('underscore');
 
+//Initialize Express
 var app = express();
-
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-
+//Setup localhost port
 var port = 3000;
 server.listen(port, "127.0.0.1");
 
+//Folder public contains html, css and javascript files for frontend
 app.use(express.static('public'));
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-
+var address = [ 0x40, 0x41, 0x44, 0x45 ];
 
 io.on('connection', function (socket) {
 
@@ -27,16 +29,20 @@ io.on('connection', function (socket) {
 
     setInterval(function() {
 
-        var address = 0x41;
-        var ampereAndVolt = i2c.readi2c(address, function(voltAndAmpere) {
+        _.each(address, function(i2cAddress) {
 
-            var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
-            console.log(logAmpereAndVolt);
+            var ampereAndVolt = i2c.readi2c(i2cAddress, function(voltAndAmpere) {
+
+                var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
+                console.log(logAmpereAndVolt);
 
 
-            socket.emit('data', { data: voltAndAmpere });
+                socket.emit('data', { data: voltAndAmpere, address: i2cAddress });
+
+            });
 
         });
+
     }, 1000);
 
 });
