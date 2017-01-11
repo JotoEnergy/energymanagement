@@ -4,7 +4,7 @@ module.exports = {
     readi2c: function (callback) {
 
         ina219.init();
-        //ina219.enableLogging(true);
+        ina219.enableLogging(true);
 
         ina219.calibrate32V1A(function () {
 
@@ -12,19 +12,32 @@ module.exports = {
 
                 //console.log("Voltage: " + volts);
 
-                ina219.getCurrent_mA(function (current){
-                    //console.log("Current (mA): " + current );
+                if(volts === 0) {
 
                     var voltAndAmpere = {
-                        volts: volts,
-                        current: current
+                        volts: 0,
+                        current: 0
                     };
-
-                    //console.log(JSON.stringify(voltAndAmpere));
 
                     return callback(voltAndAmpere);
 
-                });
+                } else {
+
+                    ina219.getCurrent_mA(function (current){
+                        //console.log("Current (mA): " + current );
+
+                        var voltAndAmpere = {
+                            volts: volts,
+                            current: current
+                        };
+
+                        //console.log(JSON.stringify(voltAndAmpere));
+
+                        return callback(voltAndAmpere);
+
+                    });
+
+                }
 
             });
 

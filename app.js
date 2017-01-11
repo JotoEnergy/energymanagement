@@ -3,19 +3,6 @@ var path = require('path');
 var mysql      = require('mysql');
 var i2c = require('./i2c');
 
-function createMysqlConnection() {
-
-    var params={
-        host     : 'localhost',
-        user     : 'root',
-        password : 'joto123',
-        database : 'raspi'
-    };
-
-    return mysql.createConnection(params);
-}
-
-
 var app = express();
 
 var server = require('http').Server(app);
@@ -31,26 +18,12 @@ app.get('/', function(req, res) {
 
 
 
-
 io.on('connection', function (socket) {
+
     socket.emit('check', { hello: 'world' });
     socket.on('established', function (data) {
         console.log('Socket connection successfully established.');
     });
-
-
-    /*
-    //Start first GUI Update
-    var connection = createMysqlConnection();
-    connection.connect();
-    connection.query('SELECT * FROM powerSensor ORDER BY id DESC LIMIT 4' , function(err, rows, fields) {
-
-
-        //console.log(rows);
-        socket.emit('updates', { data: rows });
-        connection.end();
-    });
-    */
 
     setInterval(function() {
         var ampereAndVolt = i2c.readi2c(function(voltAndAmpere) {
@@ -64,32 +37,20 @@ io.on('connection', function (socket) {
         });
     }, 1000);
 
-    //Update GUI in Intervals
-    /*
-    setInterval(function() {
-
-        //Start first GUI Update
-        var connection = createMysqlConnection();
-        connection.connect();
-        connection.query('SELECT * FROM powerSensor ORDER BY id DESC LIMIT 4' , function(err, rows, fields) {
-
-
-            //console.log(rows);
-            socket.emit('updates', { data: rows});
-            connection.end();
-        });
-
-    }, 5000);
-    */
-
-
 });
 
 console.log('App started.');
 console.log('Express Server listening on: http://localhost:'+port);
 
 
+function createMysqlConnection() {
 
-setInterval(function() {
+    var params={
+        host     : 'localhost',
+        user     : 'root',
+        password : 'joto123',
+        database : 'raspi'
+    };
 
-}, 5000);
+    return mysql.createConnection(params);
+}
