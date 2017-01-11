@@ -31,6 +31,8 @@ io.on('connection', function (socket) {
 
         _.each(address, function(i2cAddress) {
 
+            console.log('Address'+i2cAddress);
+
             var ampereAndVolt = i2c.readi2c(i2cAddress, function(voltAndAmpere) {
 
                 var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
