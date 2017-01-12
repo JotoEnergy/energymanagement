@@ -29,7 +29,10 @@ io.on('connection', function (socket) {
 
     setInterval(function() {
 
-        var ampereAndVolt = i2c.readi2c(0x40, function(voltAndAmpere) {
+        var address1 = 0x40;
+        var address2 = 0x41;
+
+        var ampereAndVolt1 = i2c.readi2c(address1, function(voltAndAmpere) {
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
             console.log(logAmpereAndVolt);
@@ -38,6 +41,17 @@ io.on('connection', function (socket) {
             socket.emit('data', { data: voltAndAmpere });
 
         });
+
+        var ampereAndVoltAddress2 = i2c.readi2c(address2, function(voltAndAmpere) {
+
+            var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
+            console.log(logAmpereAndVolt);
+
+
+            socket.emit('data', { data: voltAndAmpere });
+
+        });
+
     }, 1000);
 
 });
