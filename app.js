@@ -80,6 +80,9 @@ io.on('connection', function (socket) {
                 var address = device.connection;
                 var deviceId = device.id;
 
+                console.log(address);
+                console.log(deviceId);
+
                 readi2cAndWriteIntoDatabase(address, deviceId);
 
             });
