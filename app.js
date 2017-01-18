@@ -91,7 +91,7 @@ io.on('connection', function (socket) {
             });
             */
 
-            cosnole.log(devices);
+            console.log(devices);
 
 
 
