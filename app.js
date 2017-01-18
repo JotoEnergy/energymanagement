@@ -20,9 +20,8 @@ app.get('/', function(req, res) {
 
 //var address = [ 0x40, 0x41, 0x44, 0x45 ];
 
-function readi2cAndWriteIntoDatabase(address, id) {
+function getAddressFromString (address) {
 
-    /*
     var useAddress;
     switch(address) {
         case '0x40':
@@ -31,13 +30,32 @@ function readi2cAndWriteIntoDatabase(address, id) {
         case '0x41':
             useAddress = 0x41;
         break;
+        case '0x42':
+            useAddress = 0x42;
+            break;
+        case '0x43':
+            useAddress = 0x43;
+            break;
+        case '0x44':
+            useAddress = 0x44;
+            break;
+        case '0x45':
+            useAddress = 0x45;
+            break;
         default:
             useAddress = 0x40;
         break;
     }
-    */
 
-    var ampereAndVolt1 = i2c.readi2c(0x40, function(voltAndAmpere) {
+    return useAddress;
+
+}
+
+function readi2cAndWriteIntoDatabase(address, id) {
+
+    var i2cAddress = getAddressFromString(address);
+
+    var ampereAndVolt1 = i2c.readi2c(i2cAddress, function(voltAndAmpere) {
 
         var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
         console.log('Adresse: '+address);
