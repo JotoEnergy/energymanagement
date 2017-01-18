@@ -46,7 +46,7 @@ io.on('connection', function (socket) {
             var current = voltAndAmpere.current / 1000;
 
             var watt = current * volt;
-            
+
             var connection = createMysqlConnection();
             connection.connect();
             connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES ("1", ?, ?, ?, ?)', [voltAndAmpere.volts, voltAndAmpere.current, watt, timest], function(err, rows, fields) {
@@ -85,7 +85,7 @@ function createMysqlConnection() {
         host     : 'localhost',
         user     : 'root',
         password : 'joto123',
-        database : 'raspi'
+        database : 'energyMonitor'
     };
 
     return mysql.createConnection(params);
