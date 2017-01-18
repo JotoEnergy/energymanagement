@@ -34,6 +34,8 @@ function readi2cAndWriteIntoDatabase(address, id) {
 
         var watt = current * volt;
 
+        console.log(volt);
+
         /*
         var connection = createMysqlConnection();
         connection.connect();
@@ -43,7 +45,7 @@ function readi2cAndWriteIntoDatabase(address, id) {
             connection.end();
 
         });
-        */
+
 
     });
 
