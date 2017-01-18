@@ -127,6 +127,11 @@ io.on('connection', function (socket) {
 console.log('App started.');
 console.log('Express Server listening on: http://localhost:'+port);
 
+/*
+INSERT NEW DEVICE
+ INSERT INTO device (name, connection, typ, datum) VALUES ("solarpanel","0x40","quelle","1484767591");
+
+ */
 
 function createMysqlConnection() {
 
