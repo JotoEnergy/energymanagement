@@ -27,7 +27,9 @@ function readi2cAndWriteIntoDatabase(address, id) {
         case '0x40':
             useAddress = 0x40;
         break;
-
+        case '0x41':
+            useAddress = 0x41;
+        break;
     }
 
 
