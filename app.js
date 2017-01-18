@@ -73,7 +73,16 @@ io.on('connection', function (socket) {
         var address2 = 0x41;
 
         readDatabaseForDevices(function(devices) {
-            console.log(devices);
+
+
+            _.map(devices, function(device){
+                console.log(device);
+                console.log(device.id);
+            });
+
+
+
+
         });
 
         /*
