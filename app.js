@@ -41,6 +41,18 @@ io.on('connection', function (socket) {
 
             socket.emit('data', { data: voltAndAmpere, address: address1 });
 
+            var timest = Math.floor(Date.now() / 1000);
+            var volt = voltAndAmpere.volts;
+            var current = voltAndAmpere.current / 1000;
+
+            var watt = current * volt;
+            connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES ("1", ?, ?, ?, ?)', [voltAndAmpere.volts, voltAndAmpere.current, watt, timest], function(err, rows, fields) {
+                if (err) throw err;
+
+                connection.end();
+
+            });
+
         });
 
         /*
