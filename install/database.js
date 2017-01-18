@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
 connection.connect();
 
 //Create Table
- connection.query('CREATE TABLE davice (id INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100), connection VARCHAR(60), typ VARCHAR(20), datum VARCHAR(50), UNIQUE KEY (id) )', function(err, rows, fields) {
+ connection.query('CREATE TABLE device (id INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100), connection VARCHAR(60), typ VARCHAR(20), datum VARCHAR(50), UNIQUE KEY (id) )', function(err, rows, fields) {
  if (err) throw err;
 
  console.log(rows);

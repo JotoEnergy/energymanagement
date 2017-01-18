@@ -20,6 +20,46 @@ app.get('/', function(req, res) {
 
 //var address = [ 0x40, 0x41, 0x44, 0x45 ];
 
+function readi2cAndWriteIntoDatabase(address, id) {
+
+    var ampereAndVolt1 = i2c.readi2c(address, function(voltAndAmpere) {
+
+        var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
+        console.log('Adresse: '+address);
+        console.log(logAmpereAndVolt);
+
+        var timest = Math.floor(Date.now() / 1000);
+        var volt = voltAndAmpere.volts;
+        var current = voltAndAmpere.current / 1000;
+
+        var watt = current * volt;
+
+        var connection = createMysqlConnection();
+        connection.connect();
+        connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES (?, ?, ?, ?, ?)', [id, voltAndAmpere.volts, voltAndAmpere.current, watt, timest], function(err, rows, fields) {
+            if (err) throw err;
+
+            connection.end();
+
+        });
+
+    });
+
+}
+
+function readDatabaseForDevices () {
+
+    var connection = createMysqlConnection();
+    connection.connect();
+    connection.query('SELECT * FROM device', function(err, rows, fields) {
+        if (err) throw err;
+
+        return rows;
+
+    });
+
+}
+
 io.on('connection', function (socket) {
 
     socket.emit('check', { hello: 'world' });
@@ -32,6 +72,11 @@ io.on('connection', function (socket) {
         var address1 = 0x40;
         var address2 = 0x41;
 
+        var devices = readDatabaseForDevices();
+
+        console.log(devices);
+
+        /*
         var ampereAndVolt1 = i2c.readi2c(address1, function(voltAndAmpere) {
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
@@ -57,6 +102,10 @@ io.on('connection', function (socket) {
             });
 
         });
+
+        */
+
+        //socket.emit('data', { data: voltAndAmpere, address: address1 });
 
         /*
         var ampereAndVoltAddress2 = i2c.readi2c(address2, function(voltAndAmpere) {
