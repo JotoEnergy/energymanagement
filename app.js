@@ -77,21 +77,18 @@ io.on('connection', function (socket) {
         readDatabaseForDevices(function(devices) {
 
 
-            /*
             _.map(devices, function(device){
 
                 var address = device.connection;
                 var deviceId = device.id;
 
-                console.log(address);
                 console.log(deviceId);
+                console.log(address);
 
                 readi2cAndWriteIntoDatabase(address, deviceId);
 
             });
-            */
-
-            console.log(devices);
+           // console.log(devices);
 
 
 
