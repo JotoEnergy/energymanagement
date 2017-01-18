@@ -34,6 +34,7 @@ function readi2cAndWriteIntoDatabase(address, id) {
 
         var watt = current * volt;
 
+        /*
         var connection = createMysqlConnection();
         connection.connect();
         connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES (?, ?, ?, ?, ?)', [id, voltAndAmpere.volts, voltAndAmpere.current, watt, timest], function(err, rows, fields) {
@@ -42,6 +43,7 @@ function readi2cAndWriteIntoDatabase(address, id) {
             connection.end();
 
         });
+        */
 
     });
 
@@ -89,8 +91,6 @@ io.on('connection', function (socket) {
 
             });
            // console.log(devices);
-
-
 
         });
 
