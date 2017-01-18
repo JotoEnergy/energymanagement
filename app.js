@@ -22,7 +22,8 @@ app.get('/', function(req, res) {
 
 function readi2cAndWriteIntoDatabase(address, id) {
 
-    var ampereAndVolt1 = i2c.readi2c(address, function(voltAndAmpere) {
+    var buf = Buffer.from(address, 'utf8');
+    var ampereAndVolt1 = i2c.readi2c(buf, function(voltAndAmpere) {
 
         var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
         console.log('Adresse: '+address);
