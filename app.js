@@ -53,7 +53,7 @@ function readDatabaseForDevices (callback) {
     connection.connect();
     connection.query('SELECT * FROM device', function(err, rows, fields) {
         if (err) throw err;
-        
+
         connection.end();
         return callback(rows);
 
@@ -76,6 +76,7 @@ io.on('connection', function (socket) {
         readDatabaseForDevices(function(devices) {
 
 
+            /*
             _.map(devices, function(device){
 
                 var address = device.connection;
@@ -87,7 +88,9 @@ io.on('connection', function (socket) {
                 readi2cAndWriteIntoDatabase(address, deviceId);
 
             });
+            */
 
+            cosnole.log(devices);
 
 
 
