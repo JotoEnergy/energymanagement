@@ -53,7 +53,8 @@ function readDatabaseForDevices (callback) {
     connection.connect();
     connection.query('SELECT * FROM device', function(err, rows, fields) {
         if (err) throw err;
-
+        
+        connection.end();
         return callback(rows);
 
     });
