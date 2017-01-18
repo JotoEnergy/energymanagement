@@ -47,14 +47,14 @@ function readi2cAndWriteIntoDatabase(address, id) {
 
 }
 
-function readDatabaseForDevices () {
+function readDatabaseForDevices (callback) {
 
     var connection = createMysqlConnection();
     connection.connect();
     connection.query('SELECT * FROM device', function(err, rows, fields) {
         if (err) throw err;
 
-        return rows;
+        return callback(rows);
 
     });
 
@@ -72,9 +72,9 @@ io.on('connection', function (socket) {
         var address1 = 0x40;
         var address2 = 0x41;
 
-        var devices = readDatabaseForDevices();
-
-        console.log(devices);
+        readDatabaseForDevices(function(devices) {
+            console.log(devices);
+        });
 
         /*
         var ampereAndVolt1 = i2c.readi2c(address1, function(voltAndAmpere) {
