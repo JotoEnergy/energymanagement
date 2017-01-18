@@ -96,6 +96,30 @@ function readDatabaseForDevices (callback) {
 
 }
 
+setInterval(function() {
+
+    var address1 = 0x40;
+    var address2 = 0x41;
+
+    readDatabaseForDevices(function(devices) {
+
+
+        for(x=0;x<devices.length;x++) {
+            var address = devices[x].connection;
+            var deviceId = devices[x].id;
+
+            console.log(deviceId);
+            console.log(address);
+
+            readi2cAndWriteIntoDatabase(address, deviceId);
+        }
+
+
+        // console.log(devices);
+
+    });
+}, 1000);
+
 io.on('connection', function (socket) {
 
     socket.emit('check', { hello: 'world' });
@@ -103,28 +127,7 @@ io.on('connection', function (socket) {
         console.log('Socket connection successfully established.');
     });
 
-    setInterval(function() {
 
-        var address1 = 0x40;
-        var address2 = 0x41;
-
-        readDatabaseForDevices(function(devices) {
-
-
-            for(x=0;x<devices.length;x++) {
-                var address = devices[x].connection;
-                var deviceId = devices[x].id;
-
-                console.log(deviceId);
-                console.log(address);
-
-                readi2cAndWriteIntoDatabase(address, deviceId);
-            }
-
-
-           // console.log(devices);
-
-        });
 
         //socket.emit('data', { data: voltAndAmpere, address: address1 });
 
@@ -141,7 +144,6 @@ io.on('connection', function (socket) {
         });
         */
 
-    }, 1000);
 
 });
 
