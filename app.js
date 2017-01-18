@@ -4,12 +4,6 @@ var mysql      = require('mysql');
 var i2c = require('./i2c');
 var _ = require('underscore');
 
-var jsdom = require("jsdom").jsdom;
-var doc = jsdom();
-var window = doc.defaultView;
-
-var $ = require('jQuery')(window);
-
 //Initialize Express
 var app = express();
 var server = require('http').Server(app);
