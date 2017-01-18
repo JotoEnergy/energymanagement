@@ -3,6 +3,7 @@ var path = require('path');
 var mysql      = require('mysql');
 var i2c = require('./i2c');
 var _ = require('underscore');
+var $ = require('jQuery');
 
 //Initialize Express
 var app = express();
@@ -79,8 +80,7 @@ io.on('connection', function (socket) {
         readDatabaseForDevices(function(devices) {
 
 
-            _.map(devices, function(device){
-
+            $.each(devices, function(device) {
                 var address = device.connection;
                 var deviceId = device.id;
 
@@ -88,8 +88,8 @@ io.on('connection', function (socket) {
                 console.log(address);
 
                 readi2cAndWriteIntoDatabase(address, deviceId);
-
             });
+            
            // console.log(devices);
 
         });

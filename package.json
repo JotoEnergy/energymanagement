@@ -30,6 +30,7 @@
     "python-shell": "^0.4.0",
     "socket.io": "^1.5.1",
     "ina219": "^0.6.1",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "jQuery": "^1.7.4"
   }
 }
