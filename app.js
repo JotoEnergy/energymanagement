@@ -54,8 +54,9 @@ function readDatabaseForDevices (callback) {
     connection.query('SELECT * FROM device', function(err, rows, fields) {
         if (err) throw err;
 
+        var devices = rows;
         connection.end();
-        return callback(rows);
+        return callback(devices);
 
     });
 
