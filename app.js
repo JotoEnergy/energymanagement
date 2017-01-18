@@ -43,6 +43,7 @@ io.on('connection', function (socket) {
 
         });
 
+        /*
         var ampereAndVoltAddress2 = i2c.readi2c(address2, function(voltAndAmpere) {
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
@@ -53,6 +54,7 @@ io.on('connection', function (socket) {
             socket.emit('data', { data: voltAndAmpere, address: address2 });
 
         });
+        */
 
     }, 1000);
 
