@@ -85,15 +85,16 @@ io.on('connection', function (socket) {
         readDatabaseForDevices(function(devices) {
 
 
-            $.each(devices, function(device) {
-                var address = device.connection;
-                var deviceId = device.id;
+            for(x=0;x<devices.length;x++) {
+                var address = devices[x].connection;
+                var deviceId = devices[x].id;
 
                 console.log(deviceId);
                 console.log(address);
 
                 readi2cAndWriteIntoDatabase(address, deviceId);
-            });
+            }
+
 
            // console.log(devices);
 
