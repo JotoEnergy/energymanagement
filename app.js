@@ -37,7 +37,7 @@ function readi2cAndWriteIntoDatabase(address, id) {
     }
     */
 
-    var useAddress = address.toString();
+    var useAddress = '1000000';
     var ampereAndVolt1 = i2c.readi2c(useAddress, function(voltAndAmpere) {
 
         var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
