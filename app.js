@@ -45,6 +45,7 @@ function readi2cAndWriteIntoDatabase(address, id) {
             connection.end();
 
         });
+        */
 
 
     });
