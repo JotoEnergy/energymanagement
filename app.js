@@ -67,7 +67,6 @@ function readi2cAndWriteIntoDatabase(address, id) {
             var timest = Math.floor(Date.now() / 1000);
             var volt = voltAndAmpere.volts;
             var current = voltAndAmpere.current / 1000;
-            current = 2600 - current;
 
             var watt = current * volt;
 
