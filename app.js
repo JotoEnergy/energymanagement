@@ -92,6 +92,9 @@ function readi2cAndWriteIntoDatabase(address, id) {
     try {
 
         readI2CAndOutpoutValues(function(outpout) {
+
+            console.log(outpout);
+
             var connection = createMysqlConnection();
             connection.connect();
             connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES (?, ?, ?, ?, ?)', [id, output.volts, output.current, output.watt, output.timestamp], function(err, rows, fields) {
@@ -106,7 +109,6 @@ function readi2cAndWriteIntoDatabase(address, id) {
         console.log(address+' Address not available');
     } finally {
 
-        console.log('Done');
     }
 
 
