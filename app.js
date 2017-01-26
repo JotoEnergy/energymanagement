@@ -129,7 +129,7 @@ setInterval(function() {
         // console.log(devices);
 
     });
-}, 1000);
+}, 300);
 
 io.on('connection', function (socket) {
 
