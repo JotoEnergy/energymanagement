@@ -51,11 +51,14 @@ function getAddressFromString (address) {
 
 }
 
-function readI2CAndOutpoutValues (i2caddress, callback) {
+
+function readi2cAndWriteIntoDatabase(address, id) {
+
+    var i2cAddress = getAddressFromString(address);
 
     try {
 
-        var ampereAndVolt1 = i2c.readi2c(i2caddress, function(voltAndAmpere) {
+        var ampereAndVolt1 = i2c.readi2c(i2cAddress, function(voltAndAmpere) {
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
             console.log('Adresse: '+address);
@@ -67,47 +70,23 @@ function readI2CAndOutpoutValues (i2caddress, callback) {
 
             var watt = current * volt;
 
-            var returnData = {
-                volts: voltAndAmpere.volts,
-                ampere: voltAndAmpere.current,
-                watt: watt,
-                timestamp: timest
-            };
-
-            callback(returnData);
-        });
-
-    } catch (e) {
-        return { error: 'Not available' };
-    }
-
-}
-
-
-function readi2cAndWriteIntoDatabase(address, id) {
-
-    var i2cAddress = getAddressFromString(address);
-
-    try {
-
-        readI2CAndOutpoutValues(function(output) {
-
-            console.log(output);
-
             var connection = createMysqlConnection();
             connection.connect();
-            connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES (?, ?, ?, ?, ?)', [id, output.volts, output.current, output.watt, output.timestamp], function(err, rows, fields) {
+            connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES (?, ?, ?, ?, ?)', [id, voltAndAmpere.volts, voltAndAmpere.current, watt, timest], function(err, rows, fields) {
                 if (err) throw err;
+
                 connection.end();
 
             });
+
+
         });
 
     } catch(e) {
         //console.log(e);
         console.log(address+' Address not available');
     } finally {
-
+        //console.log('Done');
     }
 
 
