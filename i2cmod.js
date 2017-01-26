@@ -505,6 +505,8 @@ Ina219.prototype.calibrate32V1A  = function (callback) {
     // Cal = 10240 (0x2800)
 
 
+    // Cal New = trunc (0.04096 / (0.000003 * 0.025))
+
 
     //old
 
@@ -513,8 +515,8 @@ Ina219.prototype.calibrate32V1A  = function (callback) {
 
 
     //new
-    this.calValue = 40960;
-
+    //this.calValue = 40960;
+    this.calValue = 546133;
 
 
     // 6. Calculate the power LSB
