@@ -76,6 +76,8 @@ function readI2CAndOutpoutValues (i2caddress, callback) {
 
 
         });
+
+        return ampereAndVolt1;
     } catch (e) {
         return { error: 'Not available' };
     }
