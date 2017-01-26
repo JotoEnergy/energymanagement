@@ -60,13 +60,13 @@ function readi2cAndWriteIntoDatabase(address, id) {
 
         var ampereAndVolt1 = i2c.readi2c(i2cAddress, function(voltAndAmpere) {
 
-
-
             if(voltAndAmpere.current < 5500 && voltAndAmpere.current > 5100) {
                 voltAndAmpere.current = 0;
+                console.log('0');
             }
             if(voltAndAmpere < 100) {
                 voltAndAmpere.current = 0;
+                console.log('0');
             }
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
