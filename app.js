@@ -67,17 +67,16 @@ function readI2CAndOutpoutValues (i2caddress, callback) {
 
             var watt = current * volt;
 
-            return {
+            var returnData = {
                 volts: voltAndAmpere.volts,
                 ampere: voltAndAmpere.current,
                 watt: watt,
                 timestamp: timest
             }
 
-
+            callback(returnData);
         });
 
-        return ampereAndVolt1;
     } catch (e) {
         return { error: 'Not available' };
     }
@@ -92,22 +91,22 @@ function readi2cAndWriteIntoDatabase(address, id) {
 
     try {
 
-        output = readI2CAndOutpoutValues(i2cAddress);
+        readI2CAndOutpoutValues(function(outpout) {
+            var connection = createMysqlConnection();
+            connection.connect();
+            connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES (?, ?, ?, ?, ?)', [id, output.volts, output.current, output.watt, output.timestamp], function(err, rows, fields) {
+                if (err) throw err;
+                connection.end();
+
+            });
+        });
 
     } catch(e) {
         //console.log(e);
         console.log(address+' Address not available');
     } finally {
 
-        console.log(output);
-
-        var connection = createMysqlConnection();
-        connection.connect();
-        connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES (?, ?, ?, ?, ?)', [id, output.volts, output.current, output.watt, output.timestamp], function(err, rows, fields) {
-            if (err) throw err;
-            connection.end();
-
-        });
+        console.log('Done');
     }
 
 
