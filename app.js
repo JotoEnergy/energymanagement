@@ -62,11 +62,9 @@ function readi2cAndWriteIntoDatabase(address, id) {
 
             if(voltAndAmpere.current < 5500 && voltAndAmpere.current > 5100) {
                 voltAndAmpere.current = 0;
-                console.log('0');
             }
-            if(voltAndAmpere < 100) {
+            if(voltAndAmpere.current < 100) {
                 voltAndAmpere.current = 0;
-                console.log('0');
             }
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
