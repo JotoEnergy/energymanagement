@@ -51,12 +51,9 @@ function getAddressFromString (address) {
 
 }
 
-function readi2cAndWriteIntoDatabase(address, id) {
-
-    var i2cAddress = getAddressFromString(address);
+function readI2CAndOutpoutValues (i2caddress, callback) {
 
     try {
-
         var ampereAndVolt1 = i2c.readi2c(i2cAddress, function(voltAndAmpere) {
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
@@ -69,23 +66,43 @@ function readi2cAndWriteIntoDatabase(address, id) {
 
             var watt = current * volt;
 
-            var connection = createMysqlConnection();
-            connection.connect();
-            connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES (?, ?, ?, ?, ?)', [id, voltAndAmpere.volts, voltAndAmpere.current, watt, timest], function(err, rows, fields) {
-                if (err) throw err;
-
-                connection.end();
-
-            });
+            return {
+                volts: voltAndAmpere.volts,
+                ampere: voltAndAmpere.current,
+                watt: watt,
+                timestamp: timest
+            }
 
 
         });
+    } catch (e) {
+        return { error: 'Not available' };
+    }
+
+}
+
+
+function readi2cAndWriteIntoDatabase(address, id) {
+
+    var i2cAddress = getAddressFromString(address);
+    var output = {};
+
+    try {
+
+        output = readI2CAndOutpoutValues(i2cAddress);
 
     } catch(e) {
         //console.log(e);
         console.log(address+' Address not available');
     } finally {
-        //console.log('Done');
+
+        var connection = createMysqlConnection();
+        connection.connect();
+        connection.query('INSERT INTO energyLog (deviceid, volt, ampere, watt, datum) VALUES (?, ?, ?, ?, ?)', [id, output.volts, output.current, output.watt, output.timestamp], function(err, rows, fields) {
+            if (err) throw err;
+            connection.end();
+
+        });
     }
 
 
@@ -129,7 +146,7 @@ setInterval(function() {
         // console.log(devices);
 
     });
-}, 300);
+}, 1000);
 
 io.on('connection', function (socket) {
 
