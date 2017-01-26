@@ -85,7 +85,7 @@ function readi2cAndWriteIntoDatabase(address, id) {
         //console.log(e);
         console.log(address+' Address not available');
     } finally {
-        console.log('Done');
+        //console.log('Done');
     }
 
 
