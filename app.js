@@ -54,7 +54,8 @@ function getAddressFromString (address) {
 function readI2CAndOutpoutValues (i2caddress, callback) {
 
     try {
-        var ampereAndVolt1 = i2c.readi2c(i2cAddress, function(voltAndAmpere) {
+
+        var ampereAndVolt1 = i2c.readi2c(i2caddress, function(voltAndAmpere) {
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
             console.log('Adresse: '+address);
