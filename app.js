@@ -72,7 +72,7 @@ function readI2CAndOutpoutValues (i2caddress, callback) {
                 ampere: voltAndAmpere.current,
                 watt: watt,
                 timestamp: timest
-            }
+            };
 
             callback(returnData);
         });
@@ -87,13 +87,12 @@ function readI2CAndOutpoutValues (i2caddress, callback) {
 function readi2cAndWriteIntoDatabase(address, id) {
 
     var i2cAddress = getAddressFromString(address);
-    var output = {};
 
     try {
 
-        readI2CAndOutpoutValues(function(outpout) {
+        readI2CAndOutpoutValues(function(output) {
 
-            console.log(outpout);
+            console.log(output);
 
             var connection = createMysqlConnection();
             connection.connect();
