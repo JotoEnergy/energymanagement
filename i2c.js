@@ -4,7 +4,7 @@ module.exports = {
     readi2c: function (address, callback) {
 
         ina219.init(address);
-        //ina219.enableLogging(true);
+        ina219.enableLogging(true);
 
         ina219.calibrate32V1A(function () {
 

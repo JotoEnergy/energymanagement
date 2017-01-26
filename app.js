@@ -118,7 +118,7 @@ setInterval(function() {
         // console.log(devices);
 
     });
-}, 1000);
+}, 10000);
 
 io.on('connection', function (socket) {
 
