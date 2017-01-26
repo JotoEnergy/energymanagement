@@ -82,7 +82,8 @@ function readi2cAndWriteIntoDatabase(address, id) {
         });
 
     } catch(e) {
-        console.log(e);
+        //console.log(e);
+        console.log(address+' Address not available');
     } finally {
         console.log('Done');
     }
