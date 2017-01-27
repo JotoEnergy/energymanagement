@@ -15,7 +15,7 @@ module.exports = {
                     ina219.getCurrent_mA(function (current){
                         //console.log("Current (mA): " + current );
 
-                        current = (2600 - current) * 2;
+                        //current = (2600 - current) * 2;
                         var voltAndAmpere = {
                             volts: volts,
                             current: current
