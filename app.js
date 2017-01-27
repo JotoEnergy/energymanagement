@@ -67,6 +67,10 @@ function readi2cAndWriteIntoDatabase(address, id) {
                 voltAndAmpere.current = 0;
             }
 
+            if(voltAndAmpere.volts < 1) {
+                voltAndAmpere.volts = 0;
+            }
+
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
 
             console.log('Adresse: '+address);
