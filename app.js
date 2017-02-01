@@ -30,7 +30,6 @@ setInterval(function() {
             var deviceName = devices[x].name;
 
             console.log(deviceName);
-            console.log(address);
 
             readi2cAndWriteIntoDatabase(address, deviceId);
         }
@@ -127,8 +126,9 @@ function readi2cAndWriteIntoDatabase(address, id) {
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
 
-            console.log('Adresse: '+address);
+            //console.log('Adresse: '+address);
             console.log(logAmpereAndVolt);
+            console.log('------------------------------');
 
             var timest = Math.floor(Date.now() / 1000);
             var volt = voltAndAmpere.volts;
