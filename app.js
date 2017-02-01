@@ -18,6 +18,62 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+
+setInterval(function() {
+
+    var address1 = 0x40;
+    var address2 = 0x41;
+
+    readDatabaseForDevices(function(devices) {
+
+
+        for(x=0;x<devices.length;x++) {
+            var address = devices[x].connection;
+            var deviceId = devices[x].id;
+
+            console.log(deviceId);
+            console.log(address);
+
+            readi2cAndWriteIntoDatabase(address, deviceId);
+        }
+
+
+        // console.log(devices);
+
+    });
+}, 1000);
+
+io.on('connection', function (socket) {
+
+    socket.emit('check', { hello: 'world' });
+    socket.on('established', function (data) {
+        console.log('Socket connection successfully established.');
+    });
+
+
+
+    //socket.emit('data', { data: voltAndAmpere, address: address1 });
+
+    /*
+     var ampereAndVoltAddress2 = i2c.readi2c(address2, function(voltAndAmpere) {
+
+     var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
+     console.log('Adresse2:');
+     console.log(logAmpereAndVolt);
+
+
+     socket.emit('data', { data: voltAndAmpere, address: address2 });
+
+     });
+     */
+
+
+});
+
+console.log('App started.');
+console.log('Express Server listening on: http://localhost:'+port);
+
+
 //var address = [ 0x40, 0x41, 0x44, 0x45 ];
 
 function getAddressFromString (address) {
@@ -119,60 +175,6 @@ function readDatabaseForDevices (callback) {
     });
 
 }
-
-setInterval(function() {
-
-    var address1 = 0x40;
-    var address2 = 0x41;
-
-    readDatabaseForDevices(function(devices) {
-
-
-        for(x=0;x<devices.length;x++) {
-            var address = devices[x].connection;
-            var deviceId = devices[x].id;
-
-            console.log(deviceId);
-            console.log(address);
-
-            readi2cAndWriteIntoDatabase(address, deviceId);
-        }
-
-
-        // console.log(devices);
-
-    });
-}, 1000);
-
-io.on('connection', function (socket) {
-
-    socket.emit('check', { hello: 'world' });
-    socket.on('established', function (data) {
-        console.log('Socket connection successfully established.');
-    });
-
-
-
-        //socket.emit('data', { data: voltAndAmpere, address: address1 });
-
-        /*
-        var ampereAndVoltAddress2 = i2c.readi2c(address2, function(voltAndAmpere) {
-
-            var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
-            console.log('Adresse2:');
-            console.log(logAmpereAndVolt);
-
-
-            socket.emit('data', { data: voltAndAmpere, address: address2 });
-
-        });
-        */
-
-
-});
-
-console.log('App started.');
-console.log('Express Server listening on: http://localhost:'+port);
 
 /*
 INSERT NEW DEVICE
