@@ -116,7 +116,7 @@ function readi2cAndWriteIntoDatabase(address, id) {
             if(voltAndAmpere.current < 2700 && voltAndAmpere.current > 2500) {
                 voltAndAmpere.current = 0;
             }
-            if(voltAndAmpere.current < 100) {
+            if(voltAndAmpere.current < 10 && voltAndAmpere.current > 0) {
                 voltAndAmpere.current = 0;
             }
 

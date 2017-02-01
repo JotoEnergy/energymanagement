@@ -16,6 +16,7 @@ module.exports = {
                         //console.log("Current (mA): " + current );
 
                         //current = (2600 - current) * 2;
+
                         var voltAndAmpere = {
                             volts: volts,
                             current: current
