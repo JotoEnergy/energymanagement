@@ -1,11 +1,11 @@
-
-var i2c = require('./i2c');
+var mysql   = require('mysql');
+var i2c     = require('./i2c');
 
 
 setInterval(function() {
 
     app();
-    
+
 }, 1000);
 
 
