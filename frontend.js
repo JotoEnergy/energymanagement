@@ -20,32 +20,57 @@ app.get('/', function(req, res) {
 });
 
 
+
+
 io.on('connection', function (socket) {
 
     socket.emit('check', { hello: 'world' });
     socket.on('established', function (data) {
         console.log('Socket connection successfully established.');
+
+
+
     });
 
 
 
-    //socket.emit('data', { data: voltAndAmpere, address: address1 });
+    setInterval(function() {
 
-    /*
-     var ampereAndVoltAddress2 = i2c.readi2c(address2, function(voltAndAmpere) {
+        getDatabaseEntries(function(data) {
 
-     var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
-     console.log('Adresse2:');
-     console.log(logAmpereAndVolt);
+            socket.emit('databaseEntries', data);
+
+        });
 
 
-     socket.emit('data', { data: voltAndAmpere, address: address2 });
-
-     });
-     */
-
+    }, 1000);
 
 });
+
+
+function getDatabaseEntries (callback) {
+
+    var amountOfINAs = 4;
+    var ONE_HOUR = 3600;
+    var ONE_MINUTE = 60;
+
+    var takeDataBaseEntries = amountOfINAs * ONE_MINUTE;
+
+    var connection = createMysqlConnection();
+    connection.connect();
+    connection.query('SELECT * FROM energyLog LIMIT '+takeDataBaseEntries+'', function(err, rows, fields) {
+        if (err) throw err;
+
+        return callback(rows);
+
+        connection.end();
+
+    });
+
+
+}
+
+
 
 console.log('App started.');
 console.log('Express Server listening on: http://localhost:'+port);

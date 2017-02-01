@@ -9,7 +9,6 @@ setInterval(function() {
 }, 1000);
 
 
-
 function app () {
 
 
@@ -32,9 +31,6 @@ function app () {
 
 }
 
-
-
-//var address = [ 0x40, 0x41, 0x44, 0x45 ];
 
 function getAddressFromString (address) {
 
