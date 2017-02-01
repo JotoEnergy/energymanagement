@@ -124,7 +124,7 @@ function readi2cAndWriteIntoDatabase(address, id) {
                 voltAndAmpere.volts = 0;
             }
 
-            voltAndAmpere.current = votAndAmpere.current * 4;
+            voltAndAmpere.current = voltAndAmpere.current * 4;
 
             var logAmpereAndVolt = JSON.stringify(voltAndAmpere);
 
