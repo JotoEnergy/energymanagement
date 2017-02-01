@@ -21,17 +21,15 @@ app.get('/', function(req, res) {
 
 setInterval(function() {
 
-    var address1 = 0x40;
-    var address2 = 0x41;
-
     readDatabaseForDevices(function(devices) {
 
 
         for(x=0;x<devices.length;x++) {
             var address = devices[x].connection;
             var deviceId = devices[x].id;
+            var deviceName = devices[x].name;
 
-            console.log(deviceId);
+            console.log(deviceName);
             console.log(address);
 
             readi2cAndWriteIntoDatabase(address, deviceId);
