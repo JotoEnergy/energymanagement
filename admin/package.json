@@ -1,0 +1,14 @@
+{
+  "name": "admin",
+  "version": "1.0.0",
+  "description": "admin panel joto",
+  "main": "admin.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "energy"
+  ],
+  "author": "tobias, jonas",
+  "license": "GPL-2.0"
+}
