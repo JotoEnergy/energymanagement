@@ -13,6 +13,13 @@ var io = require('socket.io')(server);
 var port = 3000;
 server.listen(port, "127.0.0.1");
 
+//Folder public contains html, css and javascript files for frontend
+app.use(express.static());
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+
 io.on('connection', function (socket) {
 
     socket.emit('check', { hello: 'world' });
